@@ -1,2 +1,2 @@
-# Python ARM Data Analysis and Plotting Tools
-## Jayson Stemmler <jstemm@uw.edu>
+## Python ARM Data Analysis and Plotting Toolkit
+### Author: Jayson Stemmler <jstemm@uw.edu>
