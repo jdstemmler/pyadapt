@@ -1,0 +1,14 @@
+Filetree for pyadapt
+
+pyadapt/
+    examples/
+    source/
+        __init__.py
+        IO/
+            read.py
+            read_sounding.py
+        plotting/
+            plot_sounding.py
+    README.md
+    setup.py
+    tree.txt
