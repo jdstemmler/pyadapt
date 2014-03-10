@@ -79,7 +79,7 @@ class SOUNDING:
         ax.legend()
         ax.grid('on')
         
-        plt.show()
+        #plt.show()
         if out:
             plt.savefig(out)
         
