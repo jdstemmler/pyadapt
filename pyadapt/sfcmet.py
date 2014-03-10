@@ -50,13 +50,8 @@ class SFCMET:
         import matplotlib.pyplot as plt
         from .extras import windrose
         
-        #...and adjust the legend box
-        def set_legend(ax):
-            l = ax.legend(borderaxespad=-4)
-            plt.setp(l.get_texts(), fontsize=7)
-        
-        fig = plt.figure(figsize=(10,10), facecolor='w')
-        rect = [0.1, 0.1, 0.8, 0.8]
+        fig = plt.figure(facecolor='w')
+        rect = [0.15, 0.15, 0.7, 0.7]
         ax = windrose.WindroseAxes(fig, rect, axisbg='w')
         fig.add_axes(ax)
         
@@ -70,7 +65,8 @@ class SFCMET:
         ti_str3 = self.data['datetime'][-1].strftime('%H:%M')
 
         plt.suptitle(ti_str1 + ti_str2 + ti_str3)
-        set_legend(ax)
+        l = ax.legend(loc='lower left', bbox_to_anchor = (1., 0),
+                      fontsize='x-small')
         
         if plot_output:
             if autoname:
