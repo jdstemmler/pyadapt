@@ -2,13 +2,12 @@ Filetree for pyadapt
 
 pyadapt/
     examples/
-    source/
+	snd_out.png
+	sounding_example.ipynb
+    pyadapt/
         __init__.py
-        IO/
-            read.py
-            read_sounding.py
-        plotting/
-            plot_sounding.py
+        autoread.py
+        sounding.py
     README.md
     setup.py
     tree.txt
