@@ -24,7 +24,7 @@ Supported File Types:
 import os
 from scipy.io import netcdf_file as nc
 
-from . import read_sounding
+from .sounding import SOUNDING
 
 # some setup things for smooth file operation
 supported = ['nc', 'cdf', 'cdf4']
@@ -33,11 +33,27 @@ class IOError(Exception):
     pass
 
 def read(in_file):
-    
+    '''
+    Try to automatically read and return a data class appropriate for what
+    is contained within the file.
+    '''
     # check that the file exists
     if not os.path.isfile(in_file):
         raise IOError('Cannot Find File')
     
     # check that the file type is supported
-    if os.path.basename(in_file).split('.')[0] not in supported:
+    if os.path.basename(in_file).split('.')[-1] not in supported:
         raise IOError('Filetype Not Supported')
+    
+    # open the file for reading
+    F = nc(in_file, 'r')
+    
+    # go throught the process of checking what the filetype is
+    
+    if 'sonde' in F.zeb_platform:
+        dat = SOUNDING(F)
+    else:
+        raise IOError('Instrument Not Supported')
+    
+    F.close()    
+    return dat
