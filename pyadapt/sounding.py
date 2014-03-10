@@ -16,6 +16,12 @@ class SOUNDING:
         self.dimensions = {}
         self.units = {}
         
+        self.filename = os.path.basename(F.filename)
+        self.site_id = F.site_id
+        self.kind = 'Surface Meteorology File'
+        self.sample_int = F.sample_int
+        self.comment = F.comment
+        
         for i in F.variables.keys():
             #self.data[i] = F.variables[i].data
             self.long_name[i] = F.variables[i].long_name
@@ -34,9 +40,16 @@ class SOUNDING:
         self.data['datetime'] = ops.to_pydatetime(
                                 self.data['time'],
                                 self.units['time'])        
+        self.file_datetime = datetime.datetime(1970, 1, 1) + datetime.timedelta(
+                                seconds = self.data['base_time'].tolist())
         F.close()
     
-    def plot(self, altmax=10000, kind='simple', out=None):
+    def plot(self, altmax=10000, kind='simple', 
+                plot_output=False,
+                 out_dir = '',
+                 out_name = '',
+                 out_fmt = 'png',
+                 autoname = True):
         ''' 
         plot a sounding for quick visualization
         
@@ -74,6 +87,7 @@ class SOUNDING:
             
             ax.set_xlabel('Temperature (C)')
             ax.set_ylabel('Altitude (m)')
+            ax.set_title('Sounding beginning %B %d %Y %H:%M')
         
         # create axes for the RH plot
         ax = f.add_subplot(122)
@@ -84,7 +98,10 @@ class SOUNDING:
         ax.grid('on')
         
         #plt.show()
-        if out:
-            plt.savefig(out)
+        if plot_output:
+            if autoname:
+                out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
+                out_name = self.file_datetime.strftime(out_str) 
+            plt.savefig(out_dir + out_name)
         
         #plt.close(f)
