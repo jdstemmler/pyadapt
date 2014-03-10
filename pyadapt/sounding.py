@@ -1,4 +1,5 @@
 import numpy
+from .extras import ops
 
 class SOUNDING:
     """ Defines a SOUNDING class
@@ -29,7 +30,10 @@ class SOUNDING:
                                 F.variables[i].missing_value)
             except AttributeError:
                 self.data[i] = F.variables[i].data
-                
+        
+        self.data['datetime'] = ops.to_pydatetime(
+                                self.data['time'],
+                                self.units['time'])        
         F.close()
     
     def plot(self, altmax=10000, kind='simple', out=None):

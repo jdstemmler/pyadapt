@@ -25,6 +25,7 @@ import os
 from scipy.io import netcdf_file as nc
 
 from .sounding import SOUNDING
+from .sfcmet import SFCMET
 
 # some setup things for smooth file operation
 supported = ['nc', 'cdf', 'cdf4']
@@ -50,8 +51,10 @@ def read(in_file):
     
     # go throught the process of checking what the filetype is
     
-    if 'sonde' in F.zeb_platform:
+    if 'sonde' in F.zeb_platform:          # Sounding File
         dat = SOUNDING(F)
+    elif 'met' in F.zeb_platform:       # Surface Meteorology File
+        dat = SFCMET(F)
     else:
         raise IOError('Instrument Not Supported')
     

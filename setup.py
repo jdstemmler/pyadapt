@@ -6,5 +6,5 @@ setup(name='pyadapt',
       author='Jayson Stemmler',
       author_email='jstemm@uw.edu',
       url='https://github.com/jstemmler/pyadapt',
-      packages=['pyadapt',],
+      packages=['pyadapt','pyadapt.extras'],
      )
