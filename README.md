@@ -47,7 +47,7 @@ you'll get a nicely (eventually...) formated plot for you to check out the data.
 	SND = pyadapt.read('/your/data/location/souding_file.cdf')
 	SND.plot(altmax=5000, out='snd_out.png')
 
-[./examples/snd_out.png]
+![Example Sounding](https://raw.github.com/jstemmler/pyadapt/master/examples/snd_out.png)
 
 ### Feedback
 
