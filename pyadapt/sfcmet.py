@@ -105,6 +105,7 @@ class SFCMET:
         
         ti_str = self.file_datetime.strftime('Surface Met Info for %B %d %Y\n')
         plt.suptitle(ti_str)
+        plt.tight_layout()
         
         if plot_output:
             if autoname:
