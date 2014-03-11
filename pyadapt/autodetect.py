@@ -26,6 +26,7 @@ from scipy.io import netcdf_file as nc
 
 from .sounding import SOUNDING
 from .sfcmet import SFCMET
+from .scattering import SCATTERING
 
 # some setup things for smooth file operation
 supported = ['nc', 'cdf', 'cdf4']
@@ -55,6 +56,8 @@ def read(in_file):
         dat = SOUNDING(F)
     elif 'met' in F.zeb_platform:       # Surface Meteorology File
         dat = SFCMET(F)
+    elif 'aos' in F.zeb_platform:
+        dat = SCATTERING(F)
     else:
         raise IOError('Instrument Not Supported')
     
