@@ -68,8 +68,9 @@ class SCATTERING:
                      'Ref. Neph., 1um Particle Diameter')
         bx.set_ylabel('Scattering Coefficient')
         bx.set_title('Ref. Neph., 10um Particle Diameter')
-        
+        ax.set_xticklabels('')
         ax.grid('on'); bx.grid('on')
+        bx.set_xlabel(self.file_datetime.strftime('%B %d %Y'))
         
         plt.tight_layout()
         
