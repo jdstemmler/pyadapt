@@ -38,8 +38,10 @@ class SCATTERING:
         self.data['datetime'] = ops.to_pydatetime(
                                 self.data['time'],
                                 self.units['time'])
-        self.file_datetime = datetime.datetime(1970, 1, 1) + datetime.timedelta(
-                                seconds = self.data['base_time'].tolist())
+        #self.file_datetime = datetime.datetime(1970, 1, 1)+datetime.timedelta(
+        #                        seconds = self.data['base_time'].tolist())
+        self.file_datetime = datetime.datetime.strptime(self.units['time'],
+                        'seconds since %Y-%m-%d %H:%M:%S 0:00')
         F.close()
     
     def plot(self, plot_output = False, 
