@@ -47,13 +47,13 @@ class SOUNDING(ARMCLASS):
             ax.plot(self.data['dp'][altmask], 
                     self.data['alt'][altmask], 
                     'r-', label='Dewpoint')
-            ax.legend()
+            ax.legend(fontsize='x-small')
             ax.set_ylim(top=altmax)
             ax.grid('on')
             
             ax.set_xlabel('Temperature (C)')
             ax.set_ylabel('Altitude (m)')
-            ax.set_title(self.file_datetime.strftime(
+            plt.suptitle(self.file_datetime.strftime(
                             'Sounding beginning %B %d %Y %H:%M'))
         
         # create axes for the RH plot
@@ -61,8 +61,10 @@ class SOUNDING(ARMCLASS):
         ax.plot(self.data['rh'][altmask], 
                 self.data['alt'][altmask], 
                 'k-', label='RelH')
-        ax.legend()
+        ax.legend(fontsize='x-small')
         ax.grid('on')
+        ax.set_yticklabels('')
+        ax.set_xlabel('RH (%)')
         
         #plt.show()
         if plot_output:
