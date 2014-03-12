@@ -90,7 +90,8 @@ class SOUNDING:
             
             ax.set_xlabel('Temperature (C)')
             ax.set_ylabel('Altitude (m)')
-            ax.set_title('Sounding beginning %B %d %Y %H:%M')
+            ax.set_title(self.file_datetime.strftime(
+                            'Sounding beginning %B %d %Y %H:%M'))
         
         # create axes for the RH plot
         ax = f.add_subplot(122)
