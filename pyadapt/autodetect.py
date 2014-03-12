@@ -22,7 +22,8 @@ Supported File Types:
 
 # import some basing things
 import os
-from scipy.io import netcdf_file as nc
+#from scipy.io import netcdf_file as nc
+from netCDF4 import Dataset
 
 from datastreams import *
 
@@ -46,7 +47,7 @@ def read(in_file):
         raise IOError('Filetype Not Supported')
     
     # open the file for reading
-    F = nc(in_file, 'r')
+    F = Dataset(in_file, 'r')
     
     # go throught the process of checking what the filetype is
     
@@ -59,5 +60,5 @@ def read(in_file):
     else:
         raise IOError('Instrument Not Supported')
     
-    F.close()    
+    #F.close()    
     return dat

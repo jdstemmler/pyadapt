@@ -12,7 +12,7 @@ class ARMCLASS:
         self.units = {}
         self.kind = kind
         
-        self.filename = os.path.basename(F.filename)
+        #self.filename = os.path.basename(F.filename)
         self.site_id = F.site_id
         self.sample_int = F.sample_int
         self.comment = F.comment
@@ -27,10 +27,10 @@ class ARMCLASS:
             try:
                 self.missing_value[i] = F.variables[i].missing_value
                 self.data[i] = numpy.ma.masked_values(
-                                F.variables[i].data,
+                                F.variables[i][:],
                                 F.variables[i].missing_value)
             except AttributeError:
-                self.data[i] = F.variables[i].data
+                self.data[i] = F.variables[i][:]
         
         self.data['datetime'] = ops.to_pydatetime(
                                 self.data['time'],
