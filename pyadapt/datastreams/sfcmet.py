@@ -1,4 +1,3 @@
-import numpy, os, datetime
 from ..extras import ops
 from default import ARMCLASS
 
@@ -6,8 +5,6 @@ class SFCMET(ARMCLASS):
     '''
     Defines a SFCMET class for surface meteorology files
     ''' 
-    def __init__(self):
-        self.kind = 'Surface Meteorology File'
         
     def plot(self, plot_output = False, 
                     out_dir = '', 

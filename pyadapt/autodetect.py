@@ -51,11 +51,11 @@ def read(in_file):
     # go throught the process of checking what the filetype is
     
     if 'sonde' in F.zeb_platform:          # Sounding File
-        dat = SOUNDING(F)
+        dat = SOUNDING(F, 'Upper Air Sounding')
     elif 'met' in F.zeb_platform:       # Surface Meteorology File
-        dat = SFCMET(F)
+        dat = SFCMET(F, 'Surface Meteorology File')
     elif 'aos' in F.zeb_platform:
-        dat = SCATTERING(F)
+        dat = SCATTERING(F, 'Nephelometer File')
     else:
         raise IOError('Instrument Not Supported')
     

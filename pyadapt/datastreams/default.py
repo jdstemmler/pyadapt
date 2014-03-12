@@ -3,13 +3,14 @@ from ..extras import ops
 
 class ARMCLASS:
     
-    def __init__(self, F):
+    def __init__(self, F, kind):
         self.data = {}
         self.keys = F.variables.keys()
         self.long_name = {}
         self.missing_value = {}
         self.dimensions = {}
         self.units = {}
+        self.kind = kind
         
         self.filename = os.path.basename(F.filename)
         self.site_id = F.site_id

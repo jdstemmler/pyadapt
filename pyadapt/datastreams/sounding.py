@@ -9,8 +9,6 @@ class SOUNDING(ARMCLASS):
     that has been detected as a sounding.
     
     """
-    def __init__(self):
-        self.kind = 'Upper Air Profile'
         
     def plot(self, altmax=10000, kind='simple', 
                 plot_output=False,
