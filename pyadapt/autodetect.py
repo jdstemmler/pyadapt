@@ -24,9 +24,7 @@ Supported File Types:
 import os
 from scipy.io import netcdf_file as nc
 
-from sounding import SOUNDING
-from sfcmet import SFCMET
-from scattering import SCATTERING
+from datastreams import *
 
 # some setup things for smooth file operation
 supported = ['nc', 'cdf', 'cdf4']
