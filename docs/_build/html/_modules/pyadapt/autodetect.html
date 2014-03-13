@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyadapt.autodetect &mdash; pyadapt  documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="pyadapt  documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyadapt  documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyadapt.autodetect</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Main read/write utility for the Py-ADAPT package.</span>
+
+<span class="sd">Auto-detects the type of files supplied by the main read() function and</span>
+<span class="sd">calls the appropriate read/write utility.</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">    sounding = pyadapt.read(&#39;inputfile.nc&#39;)</span>
+
+<span class="sd">Returns a &#39;sounding&#39; object that can then be worked on.</span>
+
+<span class="sd">Supported Instruments:</span>
+<span class="sd">    SOUNDINGS</span>
+
+<span class="sd">Supported File Types:</span>
+<span class="sd">    *.nc</span>
+<span class="sd">    *.cdf</span>
+<span class="sd">    *.cdf4</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c"># import some basing things</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c">#from scipy.io import netcdf_file as nc</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="kn">from</span> <span class="nn">datastreams</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c"># some setup things for smooth file operation</span>
+<span class="n">supported</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;nc&#39;</span><span class="p">,</span> <span class="s">&#39;cdf&#39;</span><span class="p">,</span> <span class="s">&#39;cdf4&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="IOError"><a class="viewcode-back" href="../../pyadapt.html#pyadapt.autodetect.IOError">[docs]</a><span class="k">class</span> <span class="nc">IOError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="read"><a class="viewcode-back" href="../../pyadapt.html#pyadapt.autodetect.read">[docs]</a><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">in_file</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Try to automatically read and return a data class appropriate for what</span>
+<span class="sd">    is contained within the file.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c"># check that the file exists</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">in_file</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&#39;Cannot Find File&#39;</span><span class="p">)</span>
+    
+    <span class="c"># check that the file type is supported</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&#39;Filetype Not Supported&#39;</span><span class="p">)</span>
+    
+    <span class="c"># open the file for reading</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">in_file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    
+    <span class="c"># go throught the process of checking what the filetype is</span>
+    
+    <span class="k">if</span> <span class="s">&#39;sonde&#39;</span> <span class="ow">in</span> <span class="n">F</span><span class="o">.</span><span class="n">zeb_platform</span><span class="p">:</span>          <span class="c"># Sounding File</span>
+        <span class="n">dat</span> <span class="o">=</span> <span class="n">SOUNDING</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;Upper Air Sounding&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s">&#39;met&#39;</span> <span class="ow">in</span> <span class="n">F</span><span class="o">.</span><span class="n">zeb_platform</span><span class="p">:</span>       <span class="c"># Surface Meteorology File</span>
+        <span class="n">dat</span> <span class="o">=</span> <span class="n">SFCMET</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;Surface Meteorology File&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="s">&#39;aos&#39;</span> <span class="ow">in</span> <span class="n">F</span><span class="o">.</span><span class="n">zeb_platform</span><span class="p">:</span>
+        <span class="n">dat</span> <span class="o">=</span> <span class="n">SCATTERING</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;Nephelometer File&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&#39;Instrument Not Supported&#39;</span><span class="p">)</span>
+    
+    <span class="c">#F.close()    </span>
+    <span class="k">return</span> <span class="n">dat</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyadapt  documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jayson Stemmler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
