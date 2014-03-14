@@ -40,8 +40,8 @@ class ARMCLASS:
     
     .. note::
         You will not usually call a particular ARMCLASS by name. Rather, the
-        preferred method is to use the :mod:`pyadapt.read()` function which 
-        automatically calls the appropriate ARMCLASS for you. 
+        preferred method is to use the :mod:`pyadapt.autodetect.read()` function 
+        which automatically calls the appropriate ARMCLASS for you. 
     """
     def __init__(self, F, kind):
         self.data = {}
