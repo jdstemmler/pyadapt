@@ -1,24 +1,15 @@
 #!/usr/bin/env python
 
-'''
-Main read/write utility for the Py-ADAPT package.
+"""Main read/write utility for the Py-ADAPT package.
 
-Auto-detects the type of files supplied by the main read() function and
-calls the appropriate read/write utility.
+Makes use of the :func:`read()` function to automatically detect the datastream
+of the netCDF file and pass it to the appropriate 
+:class:`pyadapt.datastreams.default.ARMCLASS` Class definition.
 
-Usage:
-    sounding = pyadapt.read('inputfile.nc')
-
-Returns a 'sounding' object that can then be worked on.
-
-Supported Instruments:
-    SOUNDINGS
-
-Supported File Types:
-    *.nc
-    *.cdf
-    *.cdf4
-'''
+.. note::
+    See the :func:`read()` function for more documentation
+    
+"""
 
 # import some basing things
 import os
@@ -35,8 +26,30 @@ class IOError(Exception):
 
 def read(in_file):
     '''
-    Try to automatically read and return a data class appropriate for what
-    is contained within the file.
+    Automatically read the netCDF file passed into the routine and send it off
+    to the appropriate Class definition to set up the data object.
+    
+    :param in_file: the filepath of the file you wish to look at
+    :type in_file: str
+    :returns: ARMCLASS Class object
+    
+    USEAGE:
+    
+    >>> import pyadapt
+    >>> sounding = pyadapt.read('inputfile.nc')
+    >>> sounding.plot()
+
+    The Py-ADAPT package currently supports the following datastreams
+        
+        * SCATTERING
+        * SFCMET
+        * SOUNDINGS
+
+    Supported File Types
+        
+        * .nc
+        * .cdf
+        * .cdf4
     '''
     # check that the file exists
     if not os.path.isfile(in_file):

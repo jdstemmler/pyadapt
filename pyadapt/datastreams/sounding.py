@@ -3,11 +3,22 @@ from ..extras import ops
 from default import ARMCLASS
 
 class SOUNDING(ARMCLASS):
-    """ Defines a SOUNDING class
+    """Defines a SOUNDING class
+    
+    Inherits the attributes found in
+    :class:`pyadapt.datastreams.default.ARMCLASS`
     
     This particular class defines a sounding. It uses as input a netcdf file
     that has been detected as a sounding.
     
+    INPUTS
+    
+    :param F: netCDF4 Dataset Object
+    :type F: netCDF4.Dataset
+    :param kind: String describing the type of data
+    :type kind: str
+
+    :returns: ARMCLASS object
     """
         
     def plot(self, altmax=10000, kind='simple', 
@@ -16,19 +27,42 @@ class SOUNDING(ARMCLASS):
                  out_name = '',
                  out_fmt = 'png',
                  autoname = True):
-        ''' 
-        plot a sounding for quick visualization
+        """Plot a sounding for quick visualization
         
-        you can set altmax (in meters) and an output file in out if you want.
-        currently `kind` doesn't work, but will eventually support choosing
-            between a normal height/temp plot and a skew-t
+        :param altmax: Maximum altitude to show (m)
+        :type altmax: float
         
-        example:
-            S.plot(altmax=3000, out='sample_out.png')
+        :param kind: What kind of plot to make (simple, skew-t)
+        :type kind: str
         
-        supported output types:
-            anything that matplotlib can normally output, such as png, eps, pdf
-        '''
+        :param plot_output: Whether to save output
+        :type plot_output: bool
+        
+        :param out_dir: Directory to save figures
+        :type out_dir: string
+        
+        :param out_name: Name of the plot
+        :type out_name: string
+        
+        :param out_fmt: Image format for the plot
+        :type out_fmt: string
+        
+        :param autoname: Whether to automatically name plots
+        :type autoname: bool
+        
+        .. note:: 
+            Currently the 'kind' keyword has no effect, so leave it as simple
+        
+        EXAMPLE:
+        
+        >>> S.plot(altmax=3000, plot_output=True, autoname=True)
+        
+        Supported output types are anything that matplotlib can normally output, such as:
+            
+            * png
+            * eps
+            * pdf
+        """
         
         import matplotlib.pyplot as plt
         

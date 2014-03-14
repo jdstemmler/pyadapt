@@ -2,7 +2,47 @@ import os, datetime, numpy
 from ..extras import ops
 
 class ARMCLASS:
+    """Defines the default ARMCLASS for the different data streams.
+    This generally isn't called directlly, but rather used as a template
+    for the other classes and their plotting routines.
     
+    INPUTS
+    
+    :param F: netCDF4 Dataset Object
+    :type F: netCDF4.Dataset
+    :param kind: String describing the type of data
+    :type kind: str
+
+    :returns: ARMCLASS Class
+    
+    The ARMCLASS Class contains all the data from the original netCDF file
+    that was input into the individual routines. A description of each of the
+    attributes is as follows.
+    
+    :.keys: a list containing all the data keys
+    :.data: dictionary containing the actual data. The keys for the dict are
+        found in *self.keys*
+    :.long_name: dict containing the long_name description of the variable
+    :.missing_value: dict containing the missing_values for masking
+    :.dimensions: dict with the dimensions for each of the data variables
+    :.units: dict containing the units for each of the data variables
+    :.kind: string describing the kind of data this is (eg sounding, sfcmet...)
+    :.site_id: site ID for the data file
+    :.comment: any comments added by the file creator
+    :.datetime: an array of datetime objects the same shape as the 'time'
+    
+    >>> ARM = pyadapt.datastreams.default.ARMCLASS(F, kind='example kind')
+    # to get a variable called 'temperature' from ARM use:
+    >>> temperature = ARM.data['temperature']
+    # you can also see the units of 'temperature'
+    >>> ARM.units['temperature']
+    u'degrees celcius'
+    
+    .. note::
+        You will not usually call a particular ARMCLASS by name. Rather, the
+        preferred method is to use the :mod:`pyadapt.read()` function which 
+        automatically calls the appropriate ARMCLASS for you. 
+    """
     def __init__(self, F, kind):
         self.data = {}
         self.keys = F.variables.keys()

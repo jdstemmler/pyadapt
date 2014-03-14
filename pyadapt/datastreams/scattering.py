@@ -2,16 +2,64 @@ from ..extras import ops
 from default import ARMCLASS
 
 class SCATTERING(ARMCLASS):
-    '''
-    Defines a SCATTERING class for surface nephelometer files
-    ''' 
+    """Defines a SCATTERING class
+    
+    Inherits the attributes found in 
+    :class:`pyadapt.datastreams.default.ARMCLASS`
+    
+    This particular class defines a nephelometer aerosol scattering file.
+    
+    INPUTS
+    
+    :param F: netCDF4 Dataset Object
+    :type F: netCDF4.Dataset
+    :param kind: String describing the type of data
+    :type kind: str
+
+    :returns: ARMCLASS object
+    """ 
         
     def plot(self, plot_output = False, 
                     out_dir = '', 
                     out_name = '',
                     out_fmt = 'png',
                     autoname=True):
+        """Makes one figure to describe the nephelometer scattering data:
         
+            * Timeseries - highlights the interday behavior of the dry
+              aerosol scattering properties. Each panel shows the aerosol 
+              scattering at a particular cutoff size for
+                
+                * red wavelength
+                * blue wavelength
+                * green wavelength
+        
+        :param plot_output: Whether to save output
+        :type plot_output: bool
+        
+        :param out_dir: Directory to save figures
+        :type out_dir: string
+        
+        :param out_name: Name of the plot
+        :type out_name: string
+        
+        :param out_fmt: Image format for the plot
+        :type out_fmt: string
+        
+        :param autoname: Whether to automatically name plots
+        :type autoname: bool
+        
+        EXAMPLE:
+        
+        >>> S = pyadapt.datastreams.scattering.SCATTERING(F, 'surface met file')
+        >>> S.plot(plot_output=True, autoname=True)
+        
+        Supported output types are anything that matplotlib can normally output, such as:
+            
+            * png
+            * eps
+            * pdf
+        """
         import matplotlib.pyplot as plt
         
         fig = plt.figure(); fig.clf();
