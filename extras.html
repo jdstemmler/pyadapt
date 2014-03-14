@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyadapt.extras &mdash; Py-ADAPT 0.0.1beta documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Py-ADAPT 0.0.1beta documentation" href="index.html" />
+    <link rel="up" title="Py-ADAPT Package" href="pyadapt.html" />
+    <link rel="prev" title="pyadapt.datastreams" href="datastreams.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datastreams.html" title="pyadapt.datastreams"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" accesskey="U">Py-ADAPT Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pyadapt-extras">
+<h1>pyadapt.extras<a class="headerlink" href="#pyadapt-extras" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-pyadapt.extras.ops">
+<span id="ops"></span><h2>ops<a class="headerlink" href="#module-pyadapt.extras.ops" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyadapt.extras.ops.to_pydatetime">
+<tt class="descclassname">pyadapt.extras.ops.</tt><tt class="descname">to_pydatetime</tt><big>(</big><em>t</em>, <em>u</em><big>)</big><a class="headerlink" href="#pyadapt.extras.ops.to_pydatetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert time array to python datetime objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t</strong> (<em>array</em>) &#8211; time array from netCDF file</li>
+<li><strong>u</strong> (<em>str</em>) &#8211; units for the time array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy array of datetime.datetime objects the same shape as
+the input time array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyadapt.extras.windrose">
+<span id="windrose"></span><h2>windrose<a class="headerlink" href="#module-pyadapt.extras.windrose" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyadapt.extras.windrose.WindroseAxes">
+<em class="property">class </em><tt class="descclassname">pyadapt.extras.windrose.</tt><tt class="descname">WindroseAxes</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a windrose axes</p>
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.bar">
+<tt class="descname">bar</tt><big>(</big><em>dir</em>, <em>var</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.bar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a windrose in bar mode. For each var bins and for each sector,
+a colored bar will be draw on the axes.</p>
+<dl class="docutils">
+<dt>Mandatory:</dt>
+<dd><ul class="first last simple">
+<li>dir : 1D array - directions the wind blows from, North centred</li>
+<li>var : 1D array - values of the variable to compute. Typically the wind
+speeds</li>
+</ul>
+</dd>
+<dt>Optional:</dt>
+<dd><ul class="first last simple">
+<li>nsector: integer - number of sectors used to compute the windrose
+table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+and the resulting computed table will be aligned with the cardinals
+points.</li>
+<li>bins : 1D array or integer- number of bins, or a sequence of
+bins variable. If not set, bins=6 between min(var) and max(var).</li>
+<li>blowto : bool. If True, the windrose will be pi rotated,
+to show where the wind blow to (usefull for pollutant rose).</li>
+<li>colors : string or tuple - one string color (&#8216;k&#8217; or &#8216;black&#8217;), in this
+case all bins will be plotted in this color; a tuple of matplotlib
+color args (string, float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</li>
+<li>cmap : a cm Colormap instance from matplotlib.cm.
+- if cmap == None and colors == None, a default Colormap is used.</li>
+<li>edgecolor : string - The string color each edge bar will be plotted.
+Default : no edgecolor</li>
+<li>opening : float - between 0.0 and 1.0, to control the space between
+each sector (1.0 for no space)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.box">
+<tt class="descname">box</tt><big>(</big><em>dir</em>, <em>var</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a windrose in proportional bar mode. For each var bins and for each
+sector, a colored bar will be draw on the axes.</p>
+<dl class="docutils">
+<dt>Mandatory:</dt>
+<dd><ul class="first last simple">
+<li>dir : 1D array - directions the wind blows from, North centred</li>
+<li>var : 1D array - values of the variable to compute. Typically the wind
+speeds</li>
+</ul>
+</dd>
+<dt>Optional:</dt>
+<dd><ul class="first last">
+<li><p class="first">nsector: integer - number of sectors used to compute the windrose
+table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+and the resulting computed table will be aligned with the cardinals
+points.</p>
+</li>
+<li><p class="first">bins : 1D array or integer- number of bins, or a sequence of
+bins variable. If not set, bins=6 between min(var) and max(var).</p>
+</li>
+<li><p class="first">blowto : bool. If True, the windrose will be pi rotated,
+to show where the wind blow to (usefull for pollutant rose).</p>
+</li>
+<li><p class="first">colors : string or tuple - one string color (&#8216;k&#8217; or &#8216;black&#8217;), in this
+case all bins will be plotted in this color; a tuple of matplotlib
+color args (string, float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</p>
+</li>
+<li><dl class="first docutils">
+<dt>cmap <span class="classifier-delimiter">:</span> <span class="classifier">a cm Colormap instance from matplotlib.cm.</span></dt>
+<dd><ul class="first last simple">
+<li>if cmap == None and colors == None, a default Colormap is used.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">edgecolor : string - The string color each edge bar will be plotted.
+Default : no edgecolor</p>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.cla">
+<tt class="descname">cla</tt><big>(</big><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.cla" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the current axes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.contour">
+<tt class="descname">contour</tt><big>(</big><em>dir</em>, <em>var</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.contour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a windrose in linear mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formated (color, width, ...) like with standard plot
+pylab command.</p>
+<dl class="docutils">
+<dt>Mandatory:</dt>
+<dd><ul class="first last simple">
+<li>dir : 1D array - directions the wind blows from, North centred</li>
+<li>var : 1D array - values of the variable to compute. Typically the wind
+speeds</li>
+</ul>
+</dd>
+<dt>Optional:</dt>
+<dd><ul class="first last">
+<li><p class="first">nsector: integer - number of sectors used to compute the windrose
+table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+and the resulting computed table will be aligned with the cardinals
+points.</p>
+</li>
+<li><p class="first">bins : 1D array or integer- number of bins, or a sequence of
+bins variable. If not set, bins=6, then</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bins</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">var</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">var</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">blowto : bool. If True, the windrose will be pi rotated,
+to show where the wind blow to (usefull for pollutant rose).</p>
+</li>
+<li><p class="first">colors : string or tuple - one string color (&#8216;k&#8217; or &#8216;black&#8217;), in this
+case all bins will be plotted in this color; a tuple of matplotlib
+color args (string, float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</p>
+</li>
+<li><p class="first">cmap : a cm Colormap instance from matplotlib.cm.
+- if cmap == None and colors == None, a default Colormap is used.</p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>others kwargs : see help(pylab.plot)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.contourf">
+<tt class="descname">contourf</tt><big>(</big><em>dir</em>, <em>var</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.contourf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a windrose in filled mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formated (color, width, ...) like with standard plot
+pylab command.</p>
+<dl class="docutils">
+<dt>Mandatory:</dt>
+<dd><ul class="first last simple">
+<li>dir : 1D array - directions the wind blows from, North centred</li>
+<li>var : 1D array - values of the variable to compute. Typically the wind
+speeds</li>
+</ul>
+</dd>
+<dt>Optional:</dt>
+<dd><ul class="first last">
+<li><p class="first">nsector: integer - number of sectors used to compute the windrose
+table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+and the resulting computed table will be aligned with the cardinals
+points.</p>
+</li>
+<li><p class="first">bins : 1D array or integer- number of bins, or a sequence of
+bins variable. If not set, bins=6, then</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bins</span><span class="o">=</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">var</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">var</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">blowto : bool. If True, the windrose will be pi rotated,
+to show where the wind blow to (usefull for pollutant rose).</p>
+</li>
+<li><p class="first">colors : string or tuple - one string color (&#8216;k&#8217; or &#8216;black&#8217;), in this
+case all bins will be plotted in this color; a tuple of matplotlib
+color args (string, float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</p>
+</li>
+<li><p class="first">cmap : a cm Colormap instance from matplotlib.cm.
+- if cmap == None and colors == None, a default Colormap is used.</p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>others kwargs : see help(pylab.plot)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.legend">
+<tt class="descname">legend</tt><big>(</big><em>loc='lower left'</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.legend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the legend location and her properties.
+The location codes are:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;best&#39;         : 0,
+&#39;upper right&#39;  : 1,
+&#39;upper left&#39;   : 2,
+&#39;lower left&#39;   : 3,
+&#39;lower right&#39;  : 4,
+&#39;right&#39;        : 5,
+&#39;center left&#39;  : 6,
+&#39;center right&#39; : 7,
+&#39;lower center&#39; : 8,
+&#39;upper center&#39; : 9,
+&#39;center&#39;       : 10,
+</pre></div>
+</div>
+<p>If none of these are suitable, loc can be a 2-tuple giving x,y
+in axes coords, ie,</p>
+<blockquote>
+<div>loc = (0, 1) is left top
+loc = (0.5, 0.5) is center, center</div></blockquote>
+<p>and so on.  The following kwargs are supported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">isaxes</span><span class="o">=</span><span class="bp">True</span>           <span class="c"># whether this is an axes legend</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s">&#39;smaller&#39;</span><span class="p">)</span>  <span class="c"># the font property</span>
+<span class="n">pad</span> <span class="o">=</span> <span class="mf">0.2</span>             <span class="c"># the fractional whitespace inside the legend border</span>
+<span class="n">shadow</span>                <span class="c"># if True, draw a shadow behind legend</span>
+<span class="n">labelsep</span> <span class="o">=</span> <span class="mf">0.005</span>     <span class="c"># the vertical space between the legend entries</span>
+<span class="n">handlelen</span> <span class="o">=</span> <span class="mf">0.05</span>     <span class="c"># the length of the legend lines</span>
+<span class="n">handletextsep</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c"># the space between the legend line and legend text</span>
+<span class="n">axespad</span> <span class="o">=</span> <span class="mf">0.02</span>       <span class="c"># the border between the axes and legend edge</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyadapt.extras.windrose.WindroseAxes.set_radii_angle">
+<tt class="descname">set_radii_angle</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.WindroseAxes.set_radii_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the radii labels angle</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyadapt.extras.windrose.clean">
+<tt class="descclassname">pyadapt.extras.windrose.</tt><tt class="descname">clean</tt><big>(</big><em>dir</em>, <em>var</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove masked values in the two arrays, where if a direction data is masked,
+the var data will also be removed in the cleaning process (and vice-versa)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyadapt.extras.windrose.histogram">
+<tt class="descclassname">pyadapt.extras.windrose.</tt><tt class="descname">histogram</tt><big>(</big><em>dir</em>, <em>var</em>, <em>bins</em>, <em>nsector</em>, <em>normed=False</em>, <em>blowto=False</em><big>)</big><a class="headerlink" href="#pyadapt.extras.windrose.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array where, for each sector of wind
+(centred on the north), we have the number of time the wind comes with a
+particular var (speed, polluant concentration, ...).</p>
+<blockquote>
+<div><ul class="simple">
+<li>dir : 1D array - directions the wind blows from, North centred</li>
+<li>var : 1D array - values of the variable to compute. Typically the wind
+speeds</li>
+<li>bins : list - list of var category against we&#8217;re going to compute the table</li>
+<li>nsector : integer - number of sectors</li>
+<li>normed : boolean - The resulting table is normed in percent or not.</li>
+<li>blowto : boolean - Normaly a windrose is computed with directions
+as wind blows from. If true, the table will be reversed (usefull for
+pollutantrose)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyadapt.extras</a><ul>
+<li><a class="reference internal" href="#module-pyadapt.extras.ops">ops</a></li>
+<li><a class="reference internal" href="#module-pyadapt.extras.windrose">windrose</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="datastreams.html"
+                        title="previous chapter">pyadapt.datastreams</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/extras.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datastreams.html" title="pyadapt.datastreams"
+             >previous</a> |</li>
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" >Py-ADAPT Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jayson Stemmler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

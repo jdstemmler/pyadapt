@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyadapt.datastreams &mdash; Py-ADAPT 0.0.1beta documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Py-ADAPT 0.0.1beta documentation" href="index.html" />
+    <link rel="up" title="Py-ADAPT Package" href="pyadapt.html" />
+    <link rel="next" title="pyadapt.extras" href="extras.html" />
+    <link rel="prev" title="Py-ADAPT Package" href="pyadapt.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="extras.html" title="pyadapt.extras"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pyadapt.html" title="Py-ADAPT Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" accesskey="U">Py-ADAPT Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pyadapt-datastreams">
+<h1>pyadapt.datastreams<a class="headerlink" href="#pyadapt-datastreams" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="armclass">
+<h2>ARMCLASS<a class="headerlink" href="#armclass" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyadapt.datastreams.default.ARMCLASS">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.default.</tt><tt class="descname">ARMCLASS</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.default.ARMCLASS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the default ARMCLASS for the different data streams.
+This generally isn&#8217;t called directlly, but rather used as a template
+for the other classes and their plotting routines.</p>
+<p>INPUTS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>F</strong> (<em>netCDF4.Dataset</em>) &#8211; netCDF4 Dataset Object</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; String describing the type of data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ARMCLASS Class</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The ARMCLASS Class contains all the data from the original netCDF file
+that was input into the individual routines. A description of each of the
+attributes is as follows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">.keys:</th><td class="field-body">a list containing all the data keys</td>
+</tr>
+<tr class="field-even field"><th class="field-name">.data:</th><td class="field-body">dictionary containing the actual data. The keys for the dict are
+found in <em>self.keys</em></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">.long_name:</th><td class="field-body">dict containing the long_name description of the variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">.missing_value:</th><td class="field-body">dict containing the missing_values for masking</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">.dimensions:</th><td class="field-body">dict with the dimensions for each of the data variables</td>
+</tr>
+<tr class="field-even field"><th class="field-name">.units:</th><td class="field-body">dict containing the units for each of the data variables</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">.kind:</th><td class="field-body">string describing the kind of data this is (eg sounding, sfcmet...)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">.site_id:</th><td class="field-body">site ID for the data file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">.comment:</th><td class="field-body">any comments added by the file creator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">.datetime:</th><td class="field-body">an array of datetime objects the same shape as the &#8216;time&#8217;</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ARM</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">ARMCLASS</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">&#39;example kind&#39;</span><span class="p">)</span>
+<span class="go"># to get a variable called &#39;temperature&#39; from ARM use:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temperature</span> <span class="o">=</span> <span class="n">ARM</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;temperature&#39;</span><span class="p">]</span>
+<span class="go"># you can also see the units of &#39;temperature&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ARM</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="s">&#39;temperature&#39;</span><span class="p">]</span>
+<span class="go">u&#39;degrees celcius&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will not usually call a particular ARMCLASS by name. Rather, the
+preferred method is to use the <tt class="xref py py-mod docutils literal"><span class="pre">pyadapt.read()</span></tt> function which 
+automatically calls the appropriate ARMCLASS for you.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="scattering">
+<h2>SCATTERING<a class="headerlink" href="#scattering" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyadapt.datastreams.scattering.SCATTERING">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.scattering.</tt><tt class="descname">SCATTERING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a SCATTERING class</p>
+<p>Inherits the attributes found in 
+<a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>This particular class defines a nephelometer aerosol scattering file.</p>
+<p>INPUTS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>F</strong> (<em>netCDF4.Dataset</em>) &#8211; netCDF4 Dataset Object</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; String describing the type of data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ARMCLASS object</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyadapt.datastreams.scattering.SCATTERING.plot">
+<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes one figure to describe the nephelometer scattering data:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Timeseries - highlights the interday behavior of the dry
+aerosol scattering properties. Each panel shows the aerosol 
+scattering at a particular cutoff size for</p>
+<blockquote>
+<div><ul class="simple">
+<li>red wavelength</li>
+<li>blue wavelength</li>
+<li>green wavelength</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
+<li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
+<li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
+<li><strong>autoname</strong> (<em>bool</em>) &#8211; Whether to automatically name plots</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>EXAMPLE:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">scattering</span><span class="o">.</span><span class="n">SCATTERING</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;surface met file&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Supported output types are anything that matplotlib can normally output, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li>png</li>
+<li>eps</li>
+<li>pdf</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sfcmet">
+<h2>SFCMET<a class="headerlink" href="#sfcmet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyadapt.datastreams.sfcmet.SFCMET">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sfcmet.</tt><tt class="descname">SFCMET</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a SFCMET class</p>
+<p>Inherits the attributes found in 
+<a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>This particular class defines a surface meteorology file.</p>
+<p>INPUTS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>F</strong> (<em>netCDF4.Dataset</em>) &#8211; netCDF4 Dataset Object</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; String describing the type of data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ARMCLASS object</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyadapt.datastreams.sfcmet.SFCMET.plot">
+<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes two figures to describe the surface meteorology data:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>Windrose - polar histogram describing the wind speed and direction</dt>
+<dd><p class="first last">for the entire day</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Timeseries - highlights the interday behavior of a selection of</dt>
+<dd><p class="first">surface meteorology variables:</p>
+<ul class="last simple">
+<li>max wind speed</li>
+<li>mean and max precipitation rates</li>
+<li>temperature</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
+<li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
+<li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
+<li><strong>autoname</strong> (<em>bool</em>) &#8211; Whether to automatically name plots</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>EXAMPLE:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">sfcmet</span><span class="o">.</span><span class="n">SFCMET</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;surface met file&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Supported output types are anything that matplotlib can normally output, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li>png</li>
+<li>eps</li>
+<li>pdf</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sounding">
+<h2>SOUNDING<a class="headerlink" href="#sounding" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyadapt.datastreams.sounding.SOUNDING">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sounding.</tt><tt class="descname">SOUNDING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a SOUNDING class</p>
+<p>Inherits the attributes found in
+<a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>This particular class defines a sounding. It uses as input a netcdf file
+that has been detected as a sounding.</p>
+<p>INPUTS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>F</strong> (<em>netCDF4.Dataset</em>) &#8211; netCDF4 Dataset Object</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; String describing the type of data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ARMCLASS object</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyadapt.datastreams.sounding.SOUNDING.plot">
+<tt class="descname">plot</tt><big>(</big><em>altmax=10000</em>, <em>kind='simple'</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a sounding for quick visualization</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>altmax</strong> (<em>float</em>) &#8211; Maximum altitude to show (m)</li>
+<li><strong>kind</strong> (<em>str</em>) &#8211; What kind of plot to make (simple, skew-t)</li>
+<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
+<li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
+<li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
+<li><strong>autoname</strong> (<em>bool</em>) &#8211; Whether to automatically name plots</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently the &#8216;kind&#8217; keyword has no effect, so leave it as simple</p>
+</div>
+<p>EXAMPLE:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">altmax</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Supported output types are anything that matplotlib can normally output, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li>png</li>
+<li>eps</li>
+<li>pdf</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyadapt.datastreams</a><ul>
+<li><a class="reference internal" href="#armclass">ARMCLASS</a></li>
+<li><a class="reference internal" href="#scattering">SCATTERING</a></li>
+<li><a class="reference internal" href="#sfcmet">SFCMET</a></li>
+<li><a class="reference internal" href="#sounding">SOUNDING</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pyadapt.html"
+                        title="previous chapter">Py-ADAPT Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="extras.html"
+                        title="next chapter">pyadapt.extras</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/datastreams.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="extras.html" title="pyadapt.extras"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pyadapt.html" title="Py-ADAPT Package"
+             >previous</a> |</li>
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" >Py-ADAPT Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jayson Stemmler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

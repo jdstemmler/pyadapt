@@ -1,30 +1,12 @@
-pyadapt package
-===============
-
-Subpackages
------------
+Py-ADAPT Package
+================
 
 .. toctree::
+      
+   datastreams
+   extras
 
-    pyadapt.datastreams
-    pyadapt.extras
-
-Submodules
-----------
-
-pyadapt.autodetect module
--------------------------
-
+pyadapt.autodetect
+------------------
 .. automodule:: pyadapt.autodetect
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: pyadapt
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:

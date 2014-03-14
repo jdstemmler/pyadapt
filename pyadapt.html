@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pyadapt package &mdash; Py-ADAPT 0.0.1 documentation</title>
+    <title>Py-ADAPT Package &mdash; Py-ADAPT 0.0.1beta documentation</title>
     
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.1beta',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Py-ADAPT 0.0.1 documentation" href="index.html" />
-    <link rel="next" title="pyadapt.datastreams package" href="pyadapt.datastreams.html" />
-    <link rel="prev" title="Welcome to pyadapt’s documentation!" href="index.html" /> 
+    <link rel="top" title="Py-ADAPT 0.0.1beta documentation" href="index.html" />
+    <link rel="next" title="pyadapt.datastreams" href="datastreams.html" />
+    <link rel="prev" title="Welcome to Py-ADAPT’s documentation!" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,33 +38,110 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pyadapt.datastreams.html" title="pyadapt.datastreams package"
+          <a href="datastreams.html" title="pyadapt.datastreams"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to pyadapt’s documentation!"
+          <a href="index.html" title="Welcome to Py-ADAPT’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Py-ADAPT 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="py-adapt-package">
+<h1>Py-ADAPT Package<a class="headerlink" href="#py-adapt-package" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datastreams.html">pyadapt.datastreams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastreams.html#armclass">ARMCLASS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastreams.html#scattering">SCATTERING</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastreams.html#sfcmet">SFCMET</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastreams.html#sounding">SOUNDING</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.html">pyadapt.extras</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.html#module-pyadapt.extras.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extras.html#module-pyadapt.extras.windrose">windrose</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module-pyadapt.autodetect">
+<span id="pyadapt-autodetect"></span><h2>pyadapt.autodetect<a class="headerlink" href="#module-pyadapt.autodetect" title="Permalink to this headline">¶</a></h2>
+<p>Main read/write utility for the Py-ADAPT package.</p>
+<p>Makes use of the <a class="reference internal" href="#pyadapt.autodetect.read" title="pyadapt.autodetect.read"><tt class="xref py py-func docutils literal"><span class="pre">read()</span></tt></a> function to automatically detect the datastream
+of the netCDF file and pass it to the appropriate 
+<a class="reference internal" href="datastreams.html#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a> Class definition.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See the <a class="reference internal" href="#pyadapt.autodetect.read" title="pyadapt.autodetect.read"><tt class="xref py py-func docutils literal"><span class="pre">read()</span></tt></a> function for more documentation</p>
+</div>
+<dl class="function">
+<dt id="pyadapt.autodetect.read">
+<tt class="descclassname">pyadapt.autodetect.</tt><tt class="descname">read</tt><big>(</big><em>in_file</em><big>)</big><a class="headerlink" href="#pyadapt.autodetect.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically read the netCDF file passed into the routine and send it off
+to the appropriate Class definition to set up the data object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>in_file</strong> (<em>str</em>) &#8211; the filepath of the file you wish to look at</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ARMCLASS Class object</td>
+</tr>
+</tbody>
+</table>
+<p>USEAGE:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyadapt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sounding</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;inputfile.nc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sounding</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The Py-ADAPT package currently supports the following datastreams</p>
+<blockquote>
+<div><ul class="simple">
+<li>SCATTERING</li>
+<li>SFCMET</li>
+<li>SOUNDINGS</li>
+</ul>
+</div></blockquote>
+<p>Supported File Types</p>
+<blockquote>
+<div><ul class="simple">
+<li>.nc</li>
+<li>.cdf</li>
+<li>.cdf4</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">pyadapt package</a><ul>
-<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-pyadapt.autodetect">pyadapt.autodetect module</a></li>
-<li><a class="reference internal" href="#module-pyadapt">Module contents</a></li>
+<li><a class="reference internal" href="#">Py-ADAPT Package</a><ul>
+<li><a class="reference internal" href="#module-pyadapt.autodetect">pyadapt.autodetect</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to pyadapt&#8217;s documentation!</a></p>
+                        title="previous chapter">Welcome to Py-ADAPT&#8217;s documentation!</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pyadapt.datastreams.html"
-                        title="next chapter">pyadapt.datastreams package</a></p>
+  <p class="topless"><a href="datastreams.html"
+                        title="next chapter">pyadapt.datastreams</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/pyadapt.txt"
@@ -85,81 +162,6 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="pyadapt-package">
-<h1>pyadapt package<a class="headerlink" href="#pyadapt-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pyadapt.datastreams.html">pyadapt.datastreams package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#module-pyadapt.datastreams.default">pyadapt.datastreams.default module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#module-pyadapt.datastreams.scattering">pyadapt.datastreams.scattering module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#module-pyadapt.datastreams.sfcmet">pyadapt.datastreams.sfcmet module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#module-pyadapt.datastreams.sounding">pyadapt.datastreams.sounding module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.datastreams.html#module-pyadapt.datastreams">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pyadapt.extras.html">pyadapt.extras package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.extras.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.extras.html#module-pyadapt.extras.ops">pyadapt.extras.ops module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.extras.html#module-pyadapt.extras.windrose">pyadapt.extras.windrose module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyadapt.extras.html#module-pyadapt.extras">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyadapt.autodetect">
-<span id="pyadapt-autodetect-module"></span><h2>pyadapt.autodetect module<a class="headerlink" href="#module-pyadapt.autodetect" title="Permalink to this headline">¶</a></h2>
-<p>Main read/write utility for the Py-ADAPT package.</p>
-<p>Auto-detects the type of files supplied by the main read() function and
-calls the appropriate read/write utility.</p>
-<dl class="docutils">
-<dt>Usage:</dt>
-<dd>sounding = pyadapt.read(&#8216;inputfile.nc&#8217;)</dd>
-</dl>
-<p>Returns a &#8216;sounding&#8217; object that can then be worked on.</p>
-<dl class="docutils">
-<dt>Supported Instruments:</dt>
-<dd>SOUNDINGS</dd>
-<dt>Supported File Types:</dt>
-<dd><a href="#id1"><span class="problematic" id="id2">*</span></a>.nc
-<a href="#id3"><span class="problematic" id="id4">*</span></a>.cdf
-<a href="#id5"><span class="problematic" id="id6">*</span></a>.cdf4</dd>
-</dl>
-<dl class="exception">
-<dt id="pyadapt.autodetect.IOError">
-<em class="property">exception </em><tt class="descclassname">pyadapt.autodetect.</tt><tt class="descname">IOError</tt><a class="reference internal" href="_modules/pyadapt/autodetect.html#IOError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.autodetect.IOError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pyadapt.autodetect.read">
-<tt class="descclassname">pyadapt.autodetect.</tt><tt class="descname">read</tt><big>(</big><em>in_file</em><big>)</big><a class="reference internal" href="_modules/pyadapt/autodetect.html#read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.autodetect.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Try to automatically read and return a data class appropriate for what
-is contained within the file.</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyadapt">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyadapt" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -172,12 +174,12 @@ is contained within the file.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pyadapt.datastreams.html" title="pyadapt.datastreams package"
+          <a href="datastreams.html" title="pyadapt.datastreams"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to pyadapt’s documentation!"
+          <a href="index.html" title="Welcome to Py-ADAPT’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">Py-ADAPT 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

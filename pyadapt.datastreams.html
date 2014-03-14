@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pyadapt.datastreams package &mdash; Py-ADAPT 0.0.1 documentation</title>
+    <title>pyadapt.datastreams package &mdash; Py-ADAPT 0.0.1beta documentation</title>
     
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.1beta',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,10 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Py-ADAPT 0.0.1 documentation" href="index.html" />
-    <link rel="up" title="pyadapt package" href="pyadapt.html" />
+    <link rel="top" title="Py-ADAPT 0.0.1beta documentation" href="index.html" />
+    <link rel="up" title="Py-ADAPT package" href="pyadapt.html" />
     <link rel="next" title="pyadapt.extras package" href="pyadapt.extras.html" />
-    <link rel="prev" title="pyadapt package" href="pyadapt.html" /> 
+    <link rel="prev" title="Py-ADAPT package" href="pyadapt.html" /> 
   </head>
   <body>
     <div class="related">
@@ -42,30 +42,88 @@
           <a href="pyadapt.extras.html" title="pyadapt.extras package"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pyadapt.html" title="pyadapt package"
+          <a href="pyadapt.html" title="Py-ADAPT package"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Py-ADAPT 0.0.1 documentation</a> &raquo;</li>
-          <li><a href="pyadapt.html" accesskey="U">pyadapt package</a> &raquo;</li> 
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" accesskey="U">Py-ADAPT package</a> &raquo;</li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-pyadapt.datastreams.default">
+<span id="pyadapt-datastreams-package"></span><h1>pyadapt.datastreams package<a class="headerlink" href="#module-pyadapt.datastreams.default" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyadapt.datastreams.default.ARMCLASS">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.default.</tt><tt class="descname">ARMCLASS</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.default.ARMCLASS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the default ARMCLASS for the different data streams.
+:F: netCDF4 Dataset Object
+:kind: String describing the type of data</p>
+</dd></dl>
+
+<span class="target" id="module-pyadapt.datastreams.scattering"></span><dl class="class">
+<dt id="pyadapt.datastreams.scattering.SCATTERING">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.scattering.</tt><tt class="descname">SCATTERING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>Defines a SCATTERING class for surface nephelometer files</p>
+<dl class="method">
+<dt id="pyadapt.datastreams.scattering.SCATTERING.plot">
+<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-pyadapt.datastreams.sfcmet"></span><dl class="class">
+<dt id="pyadapt.datastreams.sfcmet.SFCMET">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sfcmet.</tt><tt class="descname">SFCMET</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>Defines a SFCMET class for surface meteorology files</p>
+<dl class="method">
+<dt id="pyadapt.datastreams.sfcmet.SFCMET.plot">
+<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-pyadapt.datastreams.sounding"></span><dl class="class">
+<dt id="pyadapt.datastreams.sounding.SOUNDING">
+<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sounding.</tt><tt class="descname">SOUNDING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
+<p>Defines a SOUNDING class</p>
+<p>This particular class defines a sounding. It uses as input a netcdf file
+that has been detected as a sounding.</p>
+<dl class="method">
+<dt id="pyadapt.datastreams.sounding.SOUNDING.plot">
+<tt class="descname">plot</tt><big>(</big><em>altmax=10000</em>, <em>kind='simple'</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot a sounding for quick visualization</p>
+<p>you can set altmax (in meters) and an output file in out if you want.
+currently <cite>kind</cite> doesn&#8217;t work, but will eventually support choosing</p>
+<blockquote>
+<div>between a normal height/temp plot and a skew-t</div></blockquote>
+<dl class="docutils">
+<dt>example:</dt>
+<dd>S.plot(altmax=3000, out=&#8217;sample_out.png&#8217;)</dd>
+<dt>supported output types:</dt>
+<dd>anything that matplotlib can normally output, such as png, eps, pdf</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-pyadapt.datastreams"></span></div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">pyadapt.datastreams package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-pyadapt.datastreams.default">pyadapt.datastreams.default module</a></li>
-<li><a class="reference internal" href="#module-pyadapt.datastreams.scattering">pyadapt.datastreams.scattering module</a></li>
-<li><a class="reference internal" href="#module-pyadapt.datastreams.sfcmet">pyadapt.datastreams.sfcmet module</a></li>
-<li><a class="reference internal" href="#module-pyadapt.datastreams.sounding">pyadapt.datastreams.sounding module</a></li>
-<li><a class="reference internal" href="#module-pyadapt.datastreams">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="pyadapt.html"
-                        title="previous chapter">pyadapt package</a></p>
+                        title="previous chapter">Py-ADAPT package</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="pyadapt.extras.html"
                         title="next chapter">pyadapt.extras package</a></p>
@@ -89,92 +147,6 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="pyadapt-datastreams-package">
-<h1>pyadapt.datastreams package<a class="headerlink" href="#pyadapt-datastreams-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyadapt.datastreams.default">
-<span id="pyadapt-datastreams-default-module"></span><h2>pyadapt.datastreams.default module<a class="headerlink" href="#module-pyadapt.datastreams.default" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyadapt.datastreams.default.ARMCLASS">
-<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.default.</tt><tt class="descname">ARMCLASS</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/default.html#ARMCLASS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.default.ARMCLASS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="module-pyadapt.datastreams.scattering">
-<span id="pyadapt-datastreams-scattering-module"></span><h2>pyadapt.datastreams.scattering module<a class="headerlink" href="#module-pyadapt.datastreams.scattering" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyadapt.datastreams.scattering.SCATTERING">
-<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.scattering.</tt><tt class="descname">SCATTERING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/scattering.html#SCATTERING"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
-<p>Defines a SCATTERING class for surface nephelometer files</p>
-<dl class="method">
-<dt id="pyadapt.datastreams.scattering.SCATTERING.plot">
-<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/scattering.html#SCATTERING.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING.plot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyadapt.datastreams.sfcmet">
-<span id="pyadapt-datastreams-sfcmet-module"></span><h2>pyadapt.datastreams.sfcmet module<a class="headerlink" href="#module-pyadapt.datastreams.sfcmet" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyadapt.datastreams.sfcmet.SFCMET">
-<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sfcmet.</tt><tt class="descname">SFCMET</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/sfcmet.html#SFCMET"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
-<p>Defines a SFCMET class for surface meteorology files</p>
-<dl class="method">
-<dt id="pyadapt.datastreams.sfcmet.SFCMET.plot">
-<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/sfcmet.html#SFCMET.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET.plot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyadapt.datastreams.sounding">
-<span id="pyadapt-datastreams-sounding-module"></span><h2>pyadapt.datastreams.sounding module<a class="headerlink" href="#module-pyadapt.datastreams.sounding" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyadapt.datastreams.sounding.SOUNDING">
-<em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sounding.</tt><tt class="descname">SOUNDING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/sounding.html#SOUNDING"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
-<p>Defines a SOUNDING class</p>
-<p>This particular class defines a sounding. It uses as input a netcdf file
-that has been detected as a sounding.</p>
-<dl class="method">
-<dt id="pyadapt.datastreams.sounding.SOUNDING.plot">
-<tt class="descname">plot</tt><big>(</big><em>altmax=10000</em>, <em>kind='simple'</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="reference internal" href="_modules/pyadapt/datastreams/sounding.html#SOUNDING.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>plot a sounding for quick visualization</p>
-<p>you can set altmax (in meters) and an output file in out if you want.
-currently <cite>kind</cite> doesn&#8217;t work, but will eventually support choosing</p>
-<blockquote>
-<div>between a normal height/temp plot and a skew-t</div></blockquote>
-<dl class="docutils">
-<dt>example:</dt>
-<dd>S.plot(altmax=3000, out=&#8217;sample_out.png&#8217;)</dd>
-<dt>supported output types:</dt>
-<dd>anything that matplotlib can normally output, such as png, eps, pdf</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyadapt.datastreams">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyadapt.datastreams" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -190,10 +162,10 @@ currently <cite>kind</cite> doesn&#8217;t work, but will eventually support choo
           <a href="pyadapt.extras.html" title="pyadapt.extras package"
              >next</a> |</li>
         <li class="right" >
-          <a href="pyadapt.html" title="pyadapt package"
+          <a href="pyadapt.html" title="Py-ADAPT package"
              >previous</a> |</li>
-        <li><a href="index.html">Py-ADAPT 0.0.1 documentation</a> &raquo;</li>
-          <li><a href="pyadapt.html" >pyadapt package</a> &raquo;</li> 
+        <li><a href="index.html">Py-ADAPT 0.0.1beta documentation</a> &raquo;</li>
+          <li><a href="pyadapt.html" >Py-ADAPT package</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

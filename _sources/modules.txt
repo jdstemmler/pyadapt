@@ -1,0 +1,7 @@
+pyadapt
+=======
+
+.. toctree::
+   :maxdepth: 4
+
+   pyadapt
