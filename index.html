@@ -50,7 +50,6 @@
             
   <div class="section" id="welcome-to-py-adapt-s-documentation">
 <h1>Welcome to Py-ADAPT&#8217;s documentation!<a class="headerlink" href="#welcome-to-py-adapt-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pyadapt.html">Py-ADAPT Package</a><ul>
@@ -71,14 +70,46 @@
 </li>
 </ul>
 </div>
+<div class="section" id="quickstart-guide">
+<h2>Quickstart Guide<a class="headerlink" href="#quickstart-guide" title="Permalink to this headline">¶</a></h2>
+<p>Py-ADAPT is the Python ARM Data Analysis and Plotting Toolkit, useful for quickly accessing and plotting data available from the ARM archive. Not all datastreams are supported yet, but new ones are being added as this package scales up.</p>
+<p>To get up and running quickly, follow these steps.</p>
+<div class="section" id="clone-and-install">
+<h3>Clone and Install<a class="headerlink" href="#clone-and-install" title="Permalink to this headline">¶</a></h3>
+<p>First you need to clone the repository from github onto your local machine. You can do this by issuing the following command from the directory that you would like to install pyadapt into:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/jstemmler/pyadapt`
+</pre></div>
+</div>
+<p>To install, change to the newly created pyadapt directory and run the install script</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install
+</pre></div>
+</div>
+<p>This will install pyadapt into your system default python environment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will also need Numpy, matplotlib, and the netCDF4 python packages for pyplot to work</p>
+</div>
+</div>
+<div class="section" id="import-and-plot">
+<h3>Import and Plot<a class="headerlink" href="#import-and-plot" title="Permalink to this headline">¶</a></h3>
+<p>Now that you have pyadapt installed, it is easy to get up and running with the data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyadapt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;/home/jstemmler/data/test_arm_sfcmet_file.nc&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfc</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfc</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>There are a couple of options that can go into the plot() method which primarily deal with plot output. For more information about that, I encourage you to browse the documentation and see what those options are.</p>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
 <li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -92,8 +123,15 @@
             </a></p>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Py-ADAPT&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to Py-ADAPT&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#quickstart-guide">Quickstart Guide</a><ul>
+<li><a class="reference internal" href="#clone-and-install">Clone and Install</a></li>
+<li><a class="reference internal" href="#import-and-plot">Import and Plot</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
 </ul>
 
   <h4>Next topic</h4>
