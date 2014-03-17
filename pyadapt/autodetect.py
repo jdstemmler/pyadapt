@@ -64,11 +64,28 @@ def read(in_file):
     
     # go throught the process of checking what the filetype is
     
-    if 'sonde' in F.zeb_platform:          # Sounding File
+    # set the dstream variable to none
+    dstream = None
+    
+    # try and overwrite dstream with datastream information found in the netCDF
+    # files. So far .zeb_platform or .datastream have been found to contain
+    # that information
+    
+    try:
+        dstream = F.zeb_platform
+    except AttributeError:
+        pass
+    
+    try:
+        dstream = F.datastream
+    except AttributeError:
+        pass
+    
+    if 'sonde' in dstream:          # Sounding File
         dat = SOUNDING(F, 'Upper Air Sounding')
-    elif 'met' in F.zeb_platform:       # Surface Meteorology File
+    elif 'met' in dstream:       # Surface Meteorology File
         dat = SFCMET(F, 'Surface Meteorology File')
-    elif 'aos' in F.zeb_platform:
+    elif 'aos' in F.dstream:
         dat = SCATTERING(F, 'Nephelometer File')
     else:
         raise IOError('Instrument Not Supported')
