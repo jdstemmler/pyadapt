@@ -71,22 +71,23 @@ def read(in_file):
     # files. So far .zeb_platform or .datastream have been found to contain
     # that information
     
-    try:
-        dstream = F.zeb_platform
-    except AttributeError:
-        pass
-    
-    try:
-        dstream = F.datastream
-    except AttributeError:
-        pass
+    for ds in ['zeb_platform', 'datastream']:
+        try:
+            dstream = eval('F.' + ds)
+        except AttributeError:
+            pass
+            
+    if not dstream:
+        raise IOError('datastream metadata not found')
     
     if 'sonde' in dstream:          # Sounding File
         dat = SOUNDING(F, 'Upper Air Sounding')
     elif 'met' in dstream:       # Surface Meteorology File
         dat = SFCMET(F, 'Surface Meteorology File')
-    elif 'aos' in F.dstream:
+    elif 'aos' in dstream and 'ccn' not in dstream:
         dat = SCATTERING(F, 'Nephelometer File')
+    elif 'aosccn' in dstream:
+        dat = CCN(F, 'CCN Particle Counter File')
     else:
         raise IOError('Instrument Not Supported')
     

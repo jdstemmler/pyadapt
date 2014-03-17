@@ -60,5 +60,25 @@ class CCN(ARMCLASS):
             * eps
             * pdf
         """
+        import matplotlib.pyplot as plt
         
-        ss_vals = [[0.0, 0.15], [0.3, 0.4], [0.75, 1.0]]
+        ss_vals = [[0.0, 0.15], [0.4, 0.6], [0.75, 1.0]]
+        cols = ['blue', 'g', 'firebrick']
+        
+        ccn = self.data['N_CCN']
+        ss = self.data['CCN_ss_set']
+        dt = self.data['datetime']
+        
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        
+        for i,c in zip(ss_vals, cols):
+            mask = (ss > i[0]) & (ss < i[1])
+            ax.plot(dt[mask], ccn[mask], c=c, marker='.', ls='none',
+                    label = '{:1.2f} - {:1.2f}'.format(i[0], i[1]))
+        
+        ax.grid('on')
+        ax.legend(numpoin=1, fontsize='xx-small')
+        
+        ax.set_ylabel('CCN'+'\n($'+self.units['N_CCN']+'$)')
+        ax.set_xlabel('Time (UTC) ' + self.file_datetime.strftime('%B %d %Y'))

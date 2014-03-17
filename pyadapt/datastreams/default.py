@@ -54,9 +54,12 @@ class ARMCLASS:
         
         #self.filename = os.path.basename(F.filename)
         self.site_id = F.site_id
-        self.sample_int = F.sample_int
-        self.comment = F.comment
-        
+        #self.sample_int = F.sample_int
+        try:
+            self.comment = F.comment
+        except AttributeError:
+            pass
+            
         for i in F.variables.keys():
             #self.data[i] = F.variables[i].data
             self.long_name[i] = F.variables[i].long_name

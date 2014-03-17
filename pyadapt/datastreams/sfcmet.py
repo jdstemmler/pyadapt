@@ -93,7 +93,7 @@ class SFCMET(ARMCLASS):
         ax.plot(self.data['datetime'],
                 self.data['precip_rate_mean'],
                 'k.', label='mean')
-        ax.set_ylabel('Precip Rate')
+        ax.set_ylabel('Precip Rate'+'\n($'+self.units['precip_rate_mean']+'$)')
         ax.set_xticklabels('')
         ax.grid('on')
         
@@ -105,7 +105,7 @@ class SFCMET(ARMCLASS):
                 self.data['wind_spd_arith_max'],
                 'b.', label='max')
         ax.legend(fontsize='xx-small', numpoints=1)
-        ax.set_ylabel('Wind Speed')
+        ax.set_ylabel('Wind Speed'+'\n($'+self.units['wind_spd_vec_avg']+'$)')
         ax.set_xticklabels('')
         ax.grid('on')
         
@@ -113,13 +113,13 @@ class SFCMET(ARMCLASS):
         ax.plot(self.data['datetime'],
                 self.data['temp_mean'],
                 'k-', label='mean')
-        ax.set_ylabel('Temperature')
-        ax.set_xlabel('Time (UTC)')
+        ax.set_ylabel('Temperature'+'\n($'+self.units['temp_mean']+'$)')
+        ax.set_xlabel('Time (UTC) '+self.file_datetime.strftime('%B %d %Y'))
         ax.grid('on')
         
         ti_str = self.file_datetime.strftime('Surface Met Info for %B %d %Y\n')
         plt.suptitle(ti_str)
-        plt.tight_layout()
+        #plt.tight_layout()
         
         if plot_output:
             if autoname:

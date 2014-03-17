@@ -73,16 +73,18 @@ class SCATTERING(ARMCLASS):
             bxvar = j+'Dry_10um_Neph3W_1'
             ax.plot(self.data['datetime'], self.data[axvar], c+'-')
             bx.plot(self.data['datetime'], self.data[bxvar], c+'-')
-        ax.set_ylabel('Scattering Coefficient')
+        ax.set_ylabel('Scattering Coefficient' + 
+                      ' ($' + self.units[axvar] + '$)')
         ax.set_title('Aerosol Total Light Scattering Coefficient\n' + 
                      'Ref. Neph., 1um Particle Diameter')
-        bx.set_ylabel('Scattering Coefficient')
+        bx.set_ylabel('Scattering Coefficient' + 
+                      ' ($' + self.units[bxvar] + '$)')
         bx.set_title('Ref. Neph., 10um Particle Diameter')
         ax.set_xticklabels('')
         ax.grid('on'); bx.grid('on')
         bx.set_xlabel(self.file_datetime.strftime('%B %d %Y'))
         
-        plt.tight_layout()
+        #plt.tight_layout()
         
         if plot_output:
             if autoname:
