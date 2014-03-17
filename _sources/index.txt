@@ -22,7 +22,7 @@ First you need to clone the repository from github onto your local machine. You 
 
 ::
 
-   git clone https://github.com/jstemmler/pyadapt`
+   git clone https://github.com/jstemmler/pyadapt
 
 To install, change to the newly created pyadapt directory and run the install script
 
