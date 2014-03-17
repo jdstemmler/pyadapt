@@ -5,6 +5,11 @@ ARMCLASS
 .. autoclass:: pyadapt.datastreams.default.ARMCLASS
    :members:
 
+CCN
+---
+.. autoclass:: pyadapt.datastreams.ccn.CCN
+   :members:
+
 SCATTERING
 ----------
 .. autoclass:: pyadapt.datastreams.scattering.SCATTERING
