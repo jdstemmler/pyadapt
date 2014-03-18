@@ -21,8 +21,9 @@ class SOUNDING(ARMCLASS):
     :returns: ARMCLASS object
     """
         
-    def plot(self, altmax=10000, kind='simple', 
-                plot_output=False,
+    def plot(self, altmax=10000, pmax = None, 
+                 kind='skew-t', 
+                 plot_output=False,
                  out_dir = '',
                  out_name = '',
                  out_fmt = 'png',
@@ -57,54 +58,90 @@ class SOUNDING(ARMCLASS):
         
         >>> S.plot(altmax=3000, plot_output=True, autoname=True)
         
-        Supported output types are anything that matplotlib can normally output, such as:
+        Supported output types are anything that matplotlib can normally output, 
+        such as:
             
             * png
             * eps
             * pdf
         """
         
-        import matplotlib.pyplot as plt
+        from ..extras import skewt
         
-        # create a mask for the altitude data
-        altmask = self.data['alt'] < altmax
+        # create a mask for plotting of the altitude data
+        if altmax and not pmax:
+            vertmask = self.data['alt'] <= altmax
+        elif pmax and not altmax:
+            vertmask = self.data['pres'] <= pmax
+        elif pmax and altmax:
+            vertmask = self.data['alt'] <= altmax
         
-        # set up the plot
-        f = plt.figure(); plt.clf()
+        temp, pres = skewt.transform_profile(self.data['tdry'],
+                                             self.data['pres'],
+                                             skew=100.)
+        dp, dpres = skewt.transform_profile(self.data['dp'],
+                                            self.data['pres'],
+                                            skew=100.)
         
-        # create axes for the temperature and dewpoint plot
-        ax = f.add_subplot(121)        
-        if kind == 'simple':
-            ax.plot(self.data['tdry'][altmask], 
-                    self.data['alt'][altmask], 
-                    'b-', label='Temp')
-            ax.plot(self.data['dp'][altmask], 
-                    self.data['alt'][altmask], 
-                    'r-', label='Dewpoint')
-            ax.legend(fontsize='x-small')
-            ax.set_ylim(top=altmax)
-            ax.grid('on')
-            
-            ax.set_xlabel('Temperature (C)')
-            ax.set_ylabel('Altitude (m)')
-            plt.suptitle(self.file_datetime.strftime(
-                            'Sounding beginning %B %d %Y %H:%M'))
+        fig, ax, bx = skewt.skewt_axes(ptop = self.data['pres'][vertmask][-1],
+                                       pbot = self.data['pres'][vertmask][0], 
+                                       tmin = 0)
         
-        # create axes for the RH plot
-        ax = f.add_subplot(122)
-        ax.plot(self.data['rh'][altmask], 
-                self.data['alt'][altmask], 
-                'k-', label='RelH')
-        ax.legend(fontsize='x-small')
-        ax.grid('on')
-        ax.set_yticklabels('')
-        ax.set_xlabel('RH (%)')
+        fig, ax = skewt.plot(fig, ax, temp, pres, 'r', label='tdry')
+        fig, ax = skewt.plot(fig, ax, dp, dpres, 'b', label='dp')
         
-        #plt.show()
-        if plot_output:
-            if autoname:
-                out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
-                out_name = self.file_datetime.strftime(out_str) 
-            plt.savefig(out_dir + out_name)
-        
-        #plt.close(f)
+        skip = 50
+        bx.barbs(numpy.zeros(len(self.data['alt'][vertmask][::skip])),
+                self.data['alt'][vertmask][::skip]/1000., 
+                self.data['u_wind'][vertmask][::skip],
+                self.data['v_wind'][vertmask][::skip])
+        bx.set_ylim((self.data['alt'][vertmask][0]/1000.,
+                     self.data['alt'][vertmask][-1]/1000.))        
+
+        fig.suptitle(self.file_datetime.strftime(
+                          'Sounding beginning %B %d %Y %H:%M'),
+                          fontsize=16)
+        #import matplotlib.pyplot as plt
+        #
+        ## create a mask for the altitude data
+        #altmask = self.data['alt'] < altmax
+        #
+        ## set up the plot
+        #f = plt.figure(); plt.clf()
+        #
+        ## create axes for the temperature and dewpoint plot
+        #ax = f.add_subplot(121)        
+        #if kind == 'simple':
+        #    ax.plot(self.data['tdry'][altmask], 
+        #            self.data['alt'][altmask], 
+        #            'b-', label='Temp')
+        #    ax.plot(self.data['dp'][altmask], 
+        #            self.data['alt'][altmask], 
+        #            'r-', label='Dewpoint')
+        #    ax.legend(fontsize='x-small')
+        #    ax.set_ylim(top=altmax)
+        #    ax.grid('on')
+        #    
+        #    ax.set_xlabel('Temperature (C)')
+        #    ax.set_ylabel('Altitude (m)')
+        #    plt.suptitle(self.file_datetime.strftime(
+        #                    'Sounding beginning %B %d %Y %H:%M'))
+        #
+        ## create axes for the RH plot
+        #ax = f.add_subplot(122)
+        #ax.plot(self.data['rh'][altmask], 
+        #        self.data['alt'][altmask], 
+        #        'k-', label='RelH')
+        #ax.legend(fontsize='x-small')
+        #ax.grid('on')
+        #ax.set_yticklabels('')
+        #ax.set_xlabel('RH (%)')
+        #
+        ##plt.show()
+        #if plot_output:
+        #    if autoname:
+        #        out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
+        #        out_name = self.file_datetime.strftime(out_str) 
+        #    plt.savefig(out_dir + out_name)
+        #
+        ##plt.close(f)

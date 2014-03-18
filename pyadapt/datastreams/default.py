@@ -81,6 +81,7 @@ class ARMCLASS:
         #self.file_datetime = datetime.datetime(1970, 1, 1)+datetime.timedelta(
         #                        seconds = self.data['base_time'].tolist())
         self.file_datetime = datetime.datetime.strptime(self.units['time'],
-                        'seconds since %Y-%m-%d %H:%M:%S 0:00')
+                        'seconds since %Y-%m-%d %H:%M:%S 0:00') + \
+                        datetime.timedelta(seconds=self.data['time'][0])
         
         F.close()
