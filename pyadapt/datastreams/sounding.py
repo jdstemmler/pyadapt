@@ -67,6 +67,7 @@ class SOUNDING(ARMCLASS):
         """
         
         from ..extras import skewt
+        #import matplotlib.pyplot as plt
         
         # create a mask for plotting of the altitude data
         if altmax and not pmax:
@@ -76,72 +77,38 @@ class SOUNDING(ARMCLASS):
         elif pmax and altmax:
             vertmask = self.data['alt'] <= altmax
         
-        temp, pres = skewt.transform_profile(self.data['tdry'],
-                                             self.data['pres'],
-                                             skew=100.)
-        dp, dpres = skewt.transform_profile(self.data['dp'],
-                                            self.data['pres'],
-                                            skew=100.)
         
+        # create the axes for the skew-t plot
         fig, ax, bx = skewt.skewt_axes(ptop = self.data['pres'][vertmask][-1],
                                        pbot = self.data['pres'][vertmask][0], 
                                        tmin = 0)
         
-        fig, ax = skewt.plot(fig, ax, temp, pres, 'r', label='tdry')
-        fig, ax = skewt.plot(fig, ax, dp, dpres, 'b', label='dp')
+        # plot a profile of temperature and pressure
+        fig, ax = skewt.plot_profile(fig, ax,
+                                self.data['tdry'], 
+                                self.data['pres'],
+                                'r', label='tdry')
+        # plot a profile of depoint temp and pressure
+        fig, ax = skewt.plot_profile(fig, ax,
+                                self.data['dp'], 
+                                self.data['pres'], 
+                                'b', label='dp')
         
-        skip = 50
-        bx.barbs(numpy.zeros(len(self.data['alt'][vertmask][::skip])),
-                self.data['alt'][vertmask][::skip]/1000., 
-                self.data['u_wind'][vertmask][::skip],
-                self.data['v_wind'][vertmask][::skip])
-        bx.set_ylim((self.data['alt'][vertmask][0]/1000.,
-                     self.data['alt'][vertmask][-1]/1000.))        
-
+        # plot the vertical profile of winds
+        fig, bx = skewt.plot_wind(fig, bx, vertmask,
+                                self.data['u_wind'],
+                                self.data['v_wind'],
+                                self.data['alt'],
+                                skip=50)
+        
+        # set the title of the plot
         fig.suptitle(self.file_datetime.strftime(
                           'Sounding beginning %B %d %Y %H:%M'),
                           fontsize=16)
-        #import matplotlib.pyplot as plt
-        #
-        ## create a mask for the altitude data
-        #altmask = self.data['alt'] < altmax
-        #
-        ## set up the plot
-        #f = plt.figure(); plt.clf()
-        #
-        ## create axes for the temperature and dewpoint plot
-        #ax = f.add_subplot(121)        
-        #if kind == 'simple':
-        #    ax.plot(self.data['tdry'][altmask], 
-        #            self.data['alt'][altmask], 
-        #            'b-', label='Temp')
-        #    ax.plot(self.data['dp'][altmask], 
-        #            self.data['alt'][altmask], 
-        #            'r-', label='Dewpoint')
-        #    ax.legend(fontsize='x-small')
-        #    ax.set_ylim(top=altmax)
-        #    ax.grid('on')
-        #    
-        #    ax.set_xlabel('Temperature (C)')
-        #    ax.set_ylabel('Altitude (m)')
-        #    plt.suptitle(self.file_datetime.strftime(
-        #                    'Sounding beginning %B %d %Y %H:%M'))
-        #
-        ## create axes for the RH plot
-        #ax = f.add_subplot(122)
-        #ax.plot(self.data['rh'][altmask], 
-        #        self.data['alt'][altmask], 
-        #        'k-', label='RelH')
-        #ax.legend(fontsize='x-small')
-        #ax.grid('on')
-        #ax.set_yticklabels('')
-        #ax.set_xlabel('RH (%)')
-        #
-        ##plt.show()
-        #if plot_output:
-        #    if autoname:
-        #        out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
-        #        out_name = self.file_datetime.strftime(out_str) 
-        #    plt.savefig(out_dir + out_name)
-        #
-        ##plt.close(f)
+        
+        # save some plot output if desired
+        if plot_output:
+            if autoname:
+                out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
+                out_name = self.file_datetime.strftime(out_str) 
+            fig.savefig(out_dir + out_name)
