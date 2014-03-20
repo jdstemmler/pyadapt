@@ -14,6 +14,8 @@ Quickstart Guide
 ----------------
 Py-ADAPT is the Python ARM Data Analysis and Plotting Toolkit, useful for quickly accessing and plotting data available from the ARM archive. Not all datastreams are supported yet, but new ones are being added as this package scales up.
 
+The code repository is hosted on github. It can be found here: http://github.com/jstemmler/pyadapt
+
 To get up and running quickly, follow these steps.
 
 Clone and Install
