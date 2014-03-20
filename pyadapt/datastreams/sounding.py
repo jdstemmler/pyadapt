@@ -21,8 +21,9 @@ class SOUNDING(ARMCLASS):
     :returns: ARMCLASS object
     """
         
-    def plot(self, altmax=10000, pmax = None, 
-                 kind='skew-t', 
+    def plot(self, altmax=10000, ptop = None, 
+                 kind='skew-t',
+                 skew=75., 
                  plot_output=False,
                  out_dir = '',
                  out_name = '',
@@ -32,6 +33,9 @@ class SOUNDING(ARMCLASS):
         
         :param altmax: Maximum altitude to show (m)
         :type altmax: float
+        
+        :param ptop: Uppermost pressure level for the plot
+        :type ptop: float
         
         :param kind: What kind of plot to make (simple, skew-t)
         :type kind: str
@@ -70,29 +74,30 @@ class SOUNDING(ARMCLASS):
         #import matplotlib.pyplot as plt
         
         # create a mask for plotting of the altitude data
-        if altmax and not pmax:
+        if altmax and not ptop:
             vertmask = self.data['alt'] <= altmax
-        elif pmax and not altmax:
-            vertmask = self.data['pres'] <= pmax
-        elif pmax and altmax:
-            vertmask = self.data['alt'] <= altmax
+        elif ptop and not altmax:
+            vertmask = self.data['pres'] >= ptop
+        elif ptop and altmax:
+            vertmask = self.data['pres'] >= ptop
         
         
         # create the axes for the skew-t plot
         fig, ax, bx = skewt.skewt_axes(ptop = self.data['pres'][vertmask][-1],
                                        pbot = self.data['pres'][vertmask][0], 
-                                       tmin = 0)
+                                       tmin = -10,
+                                       skew = skew)
         
         # plot a profile of temperature and pressure
         fig, ax = skewt.plot_profile(fig, ax,
                                 self.data['tdry'], 
                                 self.data['pres'],
-                                'r', label='tdry')
+                                'r', label='tdry', skew=skew)
         # plot a profile of depoint temp and pressure
         fig, ax = skewt.plot_profile(fig, ax,
                                 self.data['dp'], 
                                 self.data['pres'], 
-                                'b', label='dp')
+                                'b', label='dp', skew=skew)
         
         # plot the vertical profile of winds
         fig, bx = skewt.plot_wind(fig, bx, vertmask,

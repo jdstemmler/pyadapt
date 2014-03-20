@@ -13,8 +13,7 @@ def skewfactor(p, skew, ref=1000.):
     :param ref: reference pressure level. keep it at 1000.
     :type ref: float
     
-    :returns skewfactor: the skew factor to change the temperature to the
-    reference grid
+    :returns skewfactor: skewness of the skew-t plot
     
     """
     return (log10(p) - log10(ref)) * skew
