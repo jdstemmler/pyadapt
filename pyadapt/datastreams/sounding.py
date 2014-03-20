@@ -21,9 +21,8 @@ class SOUNDING(ARMCLASS):
     :returns: ARMCLASS object
     """
         
-    def plot(self, altmax=10000, ptop = None, 
-                 kind='skew-t',
-                 skew=75., 
+    def plot(self, altmax=None, ptop = 100., 
+                 skew=90., 
                  plot_output=False,
                  out_dir = '',
                  out_name = '',
@@ -36,9 +35,6 @@ class SOUNDING(ARMCLASS):
         
         :param ptop: Uppermost pressure level for the plot
         :type ptop: float
-        
-        :param kind: What kind of plot to make (simple, skew-t)
-        :type kind: str
         
         :param plot_output: Whether to save output
         :type plot_output: bool
@@ -55,12 +51,15 @@ class SOUNDING(ARMCLASS):
         :param autoname: Whether to automatically name plots
         :type autoname: bool
         
-        .. note:: 
-            Currently the 'kind' keyword has no effect, so leave it as simple
+        As of right now, there are a lot of keywords input directly into the
+        method. On the to-do list is to move those out into a **kwargs part
+        of the plot method and set up a list of defaults so that passing
+        something into kwargs overwrites the defaults instead of putting all
+        the defaults into the method call.
         
         EXAMPLE:
         
-        >>> S.plot(altmax=3000, plot_output=True, autoname=True)
+        >>> S.plot(ptop=100, plot_output=True, autoname=True)
         
         Supported output types are anything that matplotlib can normally output, 
         such as:

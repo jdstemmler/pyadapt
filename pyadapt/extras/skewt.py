@@ -73,15 +73,15 @@ def skewt_axes(tmin = -40, tmax = 30,
     import matplotlib.pyplot as plt
     
     # some defaults
-    #tmin = -40; tmax = 30; ptop = 550; pbot = 1050; skew=100; figsize=(10,10)
+    #tmin = -30; tmax = 40; ptop = 100; pbot = 1050; skew=75; figsize=(10,10)
     
     # bases some things off of a reference pressure of 1000hPa
     rpres = 1000.
     
     # set up the temperature and pressure grids
     temp = numpy.linspace(tmin, tmax, 70)
-    pres = numpy.linspace(ptop, pbot, 100)
     plev = numpy.linspace(log10(ptop), log10(pbot), 100)
+    pres = 10**plev
     
     # determine a skew factor for each row of the grid
     skf = skewfactor(10**plev, skew)
@@ -115,6 +115,8 @@ def skewt_axes(tmin = -40, tmax = 30,
     
     # contour the potential temprature grid
     TH = ax.contour(temp, -1*plev, thetagrid,
+                    levels = numpy.arange(tmin-skew+273.15, 
+                                          thetagrid.max(), 10.),
                     colors='green', linestyles='dashed')
                     
     # set the appropriate yticks and limits
@@ -143,8 +145,8 @@ def skewt_axes(tmin = -40, tmax = 30,
     bx = bx1.twinx()
     bx.set_xticks([])
     bx.set_ylabel('Altitude (km)')
-    bx.minorticks_on()
-    bx.grid('on', which='both', axis='y')
+    #bx.minorticks_on()
+    #bx.grid('on', which='both', axis='y')
     
     return fig, ax, bx
 
@@ -217,5 +219,7 @@ def plot_wind(fig, bx, mask, u, v, a, skip=50):
              v[mask][::skip])
     
     bx.set_ylim((a[mask][0]/1000., a[mask][-1]/1000.))
+    bx.minorticks_on()
+    bx.grid('on', which='both', axis='y')
     
     return fig, bx
