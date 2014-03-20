@@ -393,7 +393,7 @@ that has been detected as a sounding.</p>
 </table>
 <dl class="method">
 <dt id="pyadapt.datastreams.sounding.SOUNDING.plot">
-<tt class="descname">plot</tt><big>(</big><em>altmax=10000</em>, <em>pmax=None</em>, <em>kind='skew-t'</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">plot</tt><big>(</big><em>altmax=None</em>, <em>ptop=100.0</em>, <em>skew=90.0</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a sounding for quick visualization</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -401,7 +401,7 @@ that has been detected as a sounding.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>altmax</strong> (<em>float</em>) &#8211; Maximum altitude to show (m)</li>
-<li><strong>kind</strong> (<em>str</em>) &#8211; What kind of plot to make (simple, skew-t)</li>
+<li><strong>ptop</strong> (<em>float</em>) &#8211; Uppermost pressure level for the plot</li>
 <li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
 <li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
 <li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
@@ -412,12 +412,13 @@ that has been detected as a sounding.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Currently the &#8216;kind&#8217; keyword has no effect, so leave it as simple</p>
-</div>
+<p>As of right now, there are a lot of keywords input directly into the
+method. On the to-do list is to move those out into a <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs part
+of the plot method and set up a list of defaults so that passing
+something into kwargs overwrites the defaults instead of putting all
+the defaults into the method call.</p>
 <p>EXAMPLE:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">altmax</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ptop</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Supported output types are anything that matplotlib can normally output, 
