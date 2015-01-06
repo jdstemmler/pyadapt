@@ -2,6 +2,8 @@
 ### Author: Jayson Stemmler <jstemm@uw.edu>
 #### Version 0.0.1 (March 20, 2014)
 
+##### NOTE: (2015 Jan 06) - After some stalled development on this project, I will be working to bring this up to speed with most of the instruments available at the ENA permanent site. There should be some good new features coming soon(ish)!
+
 The Python ARM Data Analysis and Plotting Toolkit (Py-ADAPT) is (will be) a collection of useful tools for reading and viewing data from the Atmospheric Radiation Measurement (ARM) sites. These are tools that I have developed during the course of doing research for the University of Washington - I am not affiliated with DOE ARM or ASR. Use of these tools is for informational purposes only and at your own risk. I have done my best to make sure the tools are not doing anything wonky, but feel free to browse the source if you would like.
 
 ### Disclaimer
