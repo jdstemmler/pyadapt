@@ -18,5 +18,5 @@ def to_pydatetime(t, u):
         dt = [base + datetime.timedelta(seconds=i) for i in t]
         return numpy.array(dt)
     except:
-        print 'no datetime information found'
+        print('no datetime information found')
         return None
