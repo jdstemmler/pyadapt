@@ -456,7 +456,7 @@ def histogram(dir, var, bins, nsector, normed=False, blowto=False):
     """
 
     if len(var) != len(dir):
-        raise ValueError, "var and dir must have same length"
+        raise ValueError("var and dir must have same length")
 
     angle = 360./nsector
 
