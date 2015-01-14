@@ -30,6 +30,9 @@ This step should be done after cloning or forking the repo into a directory of y
 ##### If you have forked the repository:
 This could be a little more challenging, depending on what work you've done. If you've made modifications to files included in the repository, chances are that there will be merge conflicts between your edits and mine. If you know what that means, you probably know how to update your package at this moment. I will provide further instructions in a future update.
 
+### Example Data
+You can [download some example data](https://www.dropbox.com/s/8nwbker7jxsni2k/pyadapt_example_files.zip?dl=0) as a zip file and play around with it. This data comes from the [ARM Data Archive](http://www.archive.arm.gov/) from the Graciosa Island Field campaign. Included are four sounding files, one surface meteorology file, and one aerosol file. As functionality is built out on the site, more example data will be included.
+
 ### More Information
 
 For examples and easy-to-read use instructions, please refer to the wiki. I will attempt to keep this updated as more features are added. If there's something you would like to see there, let me know.
