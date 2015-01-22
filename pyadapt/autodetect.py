@@ -16,7 +16,12 @@ import os
 #from scipy.io import netcdf_file as nc
 from netCDF4 import Dataset
 
-from datastreams import *
+#from datastreams import *
+# change to explicitly import the individual datastreams
+from datastreams.scattering import SCATTERING
+from datastreams.sfcmet import SFCMET
+from datastreams.sounding import SOUNDING
+from datastreams.ccn import CCN
 
 # some setup things for smooth file operation
 supported = ['nc', 'cdf', 'cdf4']
