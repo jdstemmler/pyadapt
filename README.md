@@ -1,6 +1,6 @@
 ## Python ARM Data Analysis and Plotting Toolkit
 ### Author: Jayson Stemmler <jstemm@uw.edu>
-#### Version 0.0.1 (March 20, 2014)
+#### Version 0.1.0 (January 21, 2015)
 
 #####NOTE: (2015 Jan 06)
 After some stalled development on this project, I will be working to bring this up to speed with most of the instruments available at the ENA permanent site. There should be some good new features coming soon(ish)!
