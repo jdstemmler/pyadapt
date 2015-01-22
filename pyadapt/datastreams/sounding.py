@@ -21,7 +21,7 @@ class SOUNDING(ARMCLASS):
 
     def plot(self, altmax=None, ptop = 100.,
                  skew=90.,
-                 plot_output=False,
+                 save_plot=False,
                  out_dir = '',
                  out_name = '',
                  out_fmt = 'png',
@@ -34,8 +34,8 @@ class SOUNDING(ARMCLASS):
         :param ptop: Uppermost pressure level for the plot
         :type ptop: float
 
-        :param plot_output: Whether to save output
-        :type plot_output: bool
+        :param save_plot: Whether to save output
+        :type save_plot: bool
 
         :param out_dir: Directory to save figures
         :type out_dir: string
@@ -57,7 +57,7 @@ class SOUNDING(ARMCLASS):
 
         EXAMPLE:
 
-        >>> S.plot(ptop=100, plot_output=True, autoname=True)
+        >>> S.plot(ptop=100, save_plot=True, autoname=True)
 
         Supported output types are anything that matplotlib can normally output,
         such as:
@@ -110,8 +110,10 @@ class SOUNDING(ARMCLASS):
                           fontsize=16)
 
         # save some plot output if desired
-        if plot_output:
+        if save_plot:
             if autoname:
                 out_str = 'sounding_%Y-%m-%dH%H.' + out_fmt
                 out_name = self.file_datetime.strftime(out_str)
             fig.savefig(os.path.join(out_dir, out_name))
+        else:
+            fig.show()

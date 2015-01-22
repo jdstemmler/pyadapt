@@ -19,7 +19,7 @@ class SCATTERING(ARMCLASS):
     :returns: ARMCLASS object
     """
 
-    def plot(self, plot_output = False,
+    def plot(self, save_plot = False,
                     out_dir = '',
                     out_name = '',
                     out_fmt = 'png',
@@ -34,8 +34,8 @@ class SCATTERING(ARMCLASS):
                 * blue wavelength
                 * green wavelength
 
-        :param plot_output: Whether to save output
-        :type plot_output: bool
+        :param save_plot: Whether to save output
+        :type save_plot: bool
 
         :param out_dir: Directory to save figures
         :type out_dir: string
@@ -52,7 +52,7 @@ class SCATTERING(ARMCLASS):
         EXAMPLE:
 
         >>> S = pyadapt.datastreams.scattering.SCATTERING(F, 'surface met file')
-        >>> S.plot(plot_output=True, autoname=True)
+        >>> S.plot(save_plot=True, autoname=True)
 
         Supported output types are anything that matplotlib can normally output, such as:
 
@@ -87,9 +87,11 @@ class SCATTERING(ARMCLASS):
 
         #plt.tight_layout()
 
-        if plot_output:
+        if save_plot:
             if autoname:
                 out_str = 'dry_scattering_%Y-%m-%d.' + out_fmt
                 out_name = self.file_datetime.strftime(out_str)
 
             plt.savefig(os.path.join(out_dir, out_name))
+        else:
+            plt.show()

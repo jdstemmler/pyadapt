@@ -18,7 +18,7 @@ class CCN(ARMCLASS):
 
     :returns: ARMCLASS object
     """ 
-    def plot(self, plot_output = False, 
+    def plot(self, save_plot = False, 
                     out_dir = '', 
                     out_name = '',
                     out_fmt = 'png',
@@ -33,8 +33,8 @@ class CCN(ARMCLASS):
                * 0.3 - 0.45%
                * 0.75 - 1.0%
         
-        :param plot_output: Whether to save output
-        :type plot_output: bool
+        :param save_plot: Whether to save output
+        :type save_plot: bool
         
         :param out_dir: Directory to save figures
         :type out_dir: string
@@ -51,7 +51,7 @@ class CCN(ARMCLASS):
         EXAMPLE:
         
         >>> S = pyadapt.datastreams.ccn.CCN(F, 'ccnfile.nc')
-        >>> S.plot(plot_output=True, autoname=True)
+        >>> S.plot(save_plot=True, autoname=True)
         
         Supported output types are anything that matplotlib can normally output,
         such as:
@@ -61,6 +61,7 @@ class CCN(ARMCLASS):
             * pdf
         """
         import matplotlib.pyplot as plt
+        import os
         
         ss_vals = [[0.0, 0.15], [0.4, 0.6], [0.75, 1.0]]
         cols = ['blue', 'g', 'firebrick']
@@ -84,3 +85,12 @@ class CCN(ARMCLASS):
         ax.set_ylabel('CCN'+'\n($'+self.units['N_CCN']+'$)')
         ax.set_xlabel('Time (UTC) ' + self.file_datetime.strftime('%B %d %Y'))
         ax.set_title('Cloud Droplet Number Concentration')
+        
+        if save_plot:
+            if autoname:
+                out_str = 'ccn_concentration_%Y-%m-%d.' + out_fmt
+                out_name = self.file_datetime.strftime(out_str)
+
+            plt.savefig(os.path.join(out_dir, out_name))
+        else:
+            plt.show()

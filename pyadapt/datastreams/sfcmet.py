@@ -19,7 +19,7 @@ class SFCMET(ARMCLASS):
     :returns: ARMCLASS object
     """
 
-    def plot(self, plot_output = False,
+    def plot(self, save_plot = False,
                     out_dir = '',
                     out_name = '',
                     out_fmt = 'png',
@@ -35,8 +35,8 @@ class SFCMET(ARMCLASS):
                 * mean and max precipitation rates
                 * temperature
 
-        :param plot_output: Whether to save output
-        :type plot_output: bool
+        :param save_plot: Whether to save output
+        :type save_plot: bool
 
         :param out_dir: Directory to save figures
         :type out_dir: string
@@ -53,7 +53,7 @@ class SFCMET(ARMCLASS):
         EXAMPLE:
 
         >>> S = pyadapt.datastreams.sfcmet.SFCMET(F, 'surface met file')
-        >>> S.plot(plot_output=True, autoname=True)
+        >>> S.plot(save_plot=True, autoname=True)
 
         Supported output types are anything that matplotlib can normally output, such as:
 
@@ -83,11 +83,13 @@ class SFCMET(ARMCLASS):
         l = ax.legend(loc='lower left', bbox_to_anchor = (1., 0),
                       fontsize='x-small')
 
-        if plot_output:
+        if save_plot:
             if autoname:
                 out_str = 'windrose_%Y-%m-%d.' + out_fmt
                 out_name = self.file_datetime.strftime(out_str)
             plt.savefig(os.path.join(out_dir, out_name))
+        else:
+            plt.show()
 
         fig2 = plt.figure()
         ax = fig2.add_subplot(311)
@@ -122,9 +124,11 @@ class SFCMET(ARMCLASS):
         plt.suptitle(ti_str)
         #plt.tight_layout()
 
-        if plot_output:
+        if save_plot:
             if autoname:
                 out_str = 'sfc_vars_%Y-%m-%d.' + out_fmt
                 out_name = self.file_datetime.strftime(out_str)
 
             plt.savefig(os.path.join(out_dir, out_name))
+        else:
+            plt.show()
