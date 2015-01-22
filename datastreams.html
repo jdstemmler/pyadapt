@@ -154,7 +154,7 @@ which automatically calls the appropriate ARMCLASS for you.</p>
 </table>
 <dl class="method">
 <dt id="pyadapt.datastreams.ccn.CCN.plot">
-<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.ccn.CCN.plot" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">plot</tt><big>(</big><em>save_plot=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.ccn.CCN.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes one figure to describe the ccn amount data:</p>
 <blockquote>
 <div><ul>
@@ -176,7 +176,7 @@ particle counts for three supersaturation ranges:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>save_plot</strong> (<em>bool</em>) &#8211; Whether to save output</li>
 <li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
 <li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
 <li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
@@ -188,7 +188,7 @@ particle counts for three supersaturation ranges:</p>
 </table>
 <p>EXAMPLE:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">ccn</span><span class="o">.</span><span class="n">CCN</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;ccnfile.nc&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">save_plot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Supported output types are anything that matplotlib can normally output,
@@ -211,7 +211,7 @@ such as:</p>
 <dt id="pyadapt.datastreams.scattering.SCATTERING">
 <em class="property">class </em><tt class="descclassname">pyadapt.datastreams.scattering.</tt><tt class="descname">SCATTERING</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines a SCATTERING class</p>
-<p>Inherits the attributes found in 
+<p>Inherits the attributes found in
 <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
 <p>This particular class defines a nephelometer aerosol scattering file.</p>
 <p>INPUTS</p>
@@ -232,12 +232,12 @@ such as:</p>
 </table>
 <dl class="method">
 <dt id="pyadapt.datastreams.scattering.SCATTERING.plot">
-<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING.plot" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">plot</tt><big>(</big><em>save_plot=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.scattering.SCATTERING.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes one figure to describe the nephelometer scattering data:</p>
 <blockquote>
 <div><ul>
 <li><p class="first">Timeseries - highlights the interday behavior of the dry
-aerosol scattering properties. Each panel shows the aerosol 
+aerosol scattering properties. Each panel shows the aerosol
 scattering at a particular cutoff size for</p>
 <blockquote>
 <div><ul class="simple">
@@ -254,7 +254,7 @@ scattering at a particular cutoff size for</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>save_plot</strong> (<em>bool</em>) &#8211; Whether to save output</li>
 <li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
 <li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
 <li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
@@ -266,7 +266,7 @@ scattering at a particular cutoff size for</p>
 </table>
 <p>EXAMPLE:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">scattering</span><span class="o">.</span><span class="n">SCATTERING</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;surface met file&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">save_plot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Supported output types are anything that matplotlib can normally output, such as:</p>
@@ -288,7 +288,7 @@ scattering at a particular cutoff size for</p>
 <dt id="pyadapt.datastreams.sfcmet.SFCMET">
 <em class="property">class </em><tt class="descclassname">pyadapt.datastreams.sfcmet.</tt><tt class="descname">SFCMET</tt><big>(</big><em>F</em>, <em>kind</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines a SFCMET class</p>
-<p>Inherits the attributes found in 
+<p>Inherits the attributes found in
 <a class="reference internal" href="#pyadapt.datastreams.default.ARMCLASS" title="pyadapt.datastreams.default.ARMCLASS"><tt class="xref py py-class docutils literal"><span class="pre">pyadapt.datastreams.default.ARMCLASS</span></tt></a></p>
 <p>This particular class defines a surface meteorology file.</p>
 <p>INPUTS</p>
@@ -309,7 +309,7 @@ scattering at a particular cutoff size for</p>
 </table>
 <dl class="method">
 <dt id="pyadapt.datastreams.sfcmet.SFCMET.plot">
-<tt class="descname">plot</tt><big>(</big><em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET.plot" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">plot</tt><big>(</big><em>save_plot=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sfcmet.SFCMET.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes two figures to describe the surface meteorology data:</p>
 <blockquote>
 <div><ul>
@@ -337,7 +337,7 @@ scattering at a particular cutoff size for</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>save_plot</strong> (<em>bool</em>) &#8211; Whether to save output</li>
 <li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
 <li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
 <li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
@@ -349,7 +349,7 @@ scattering at a particular cutoff size for</p>
 </table>
 <p>EXAMPLE:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">pyadapt</span><span class="o">.</span><span class="n">datastreams</span><span class="o">.</span><span class="n">sfcmet</span><span class="o">.</span><span class="n">SFCMET</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="s">&#39;surface met file&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">save_plot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Supported output types are anything that matplotlib can normally output, such as:</p>
@@ -393,7 +393,7 @@ that has been detected as a sounding.</p>
 </table>
 <dl class="method">
 <dt id="pyadapt.datastreams.sounding.SOUNDING.plot">
-<tt class="descname">plot</tt><big>(</big><em>altmax=None</em>, <em>ptop=100.0</em>, <em>skew=90.0</em>, <em>plot_output=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">plot</tt><big>(</big><em>altmax=None</em>, <em>ptop=100.0</em>, <em>skew=90.0</em>, <em>save_plot=False</em>, <em>out_dir=''</em>, <em>out_name=''</em>, <em>out_fmt='png'</em>, <em>autoname=True</em><big>)</big><a class="headerlink" href="#pyadapt.datastreams.sounding.SOUNDING.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a sounding for quick visualization</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -402,7 +402,7 @@ that has been detected as a sounding.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>altmax</strong> (<em>float</em>) &#8211; Maximum altitude to show (m)</li>
 <li><strong>ptop</strong> (<em>float</em>) &#8211; Uppermost pressure level for the plot</li>
-<li><strong>plot_output</strong> (<em>bool</em>) &#8211; Whether to save output</li>
+<li><strong>save_plot</strong> (<em>bool</em>) &#8211; Whether to save output</li>
 <li><strong>out_dir</strong> (<em>string</em>) &#8211; Directory to save figures</li>
 <li><strong>out_name</strong> (<em>string</em>) &#8211; Name of the plot</li>
 <li><strong>out_fmt</strong> (<em>string</em>) &#8211; Image format for the plot</li>
@@ -418,10 +418,10 @@ of the plot method and set up a list of defaults so that passing
 something into kwargs overwrites the defaults instead of putting all
 the defaults into the method call.</p>
 <p>EXAMPLE:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ptop</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">plot_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ptop</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">save_plot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">autoname</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Supported output types are anything that matplotlib can normally output, 
+<p>Supported output types are anything that matplotlib can normally output,
 such as:</p>
 <blockquote>
 <div><ul class="simple">
