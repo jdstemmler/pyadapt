@@ -9,4 +9,4 @@ g = glob.glob(os.path.join(file_dir, '*'))
 
 for i in g:
     F = pyadapt.read(i)
-    F.plot(plot_output=True, out_dir=os.path.abspath('plots'))
+    F.plot(save_plot=True, out_dir=os.path.abspath('plots'))

@@ -7,4 +7,4 @@ file_in = os.path.abspath('./data/grwaosM1.a1.20100531.000000.cdf')
 plot_dir = os.path.abspath('./plots')
 
 F = pyadapt.read(file_in)
-F.plot(plot_output=True, out_dir=plot_dir)
+F.plot(save_plot=True, out_dir=plot_dir)

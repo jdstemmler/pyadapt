@@ -6,7 +6,7 @@ plot_dir = os.path.abspath('./plots')
 
 snd = pyadapt.read(file_in)
 snd.plot(ptop=100,
-         plot_output=True,
+         save_plot=True,
          out_dir = plot_dir,
          autoname=True,
          skew=90)
