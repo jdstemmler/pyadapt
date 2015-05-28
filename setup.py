@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='pyadapt',
       version='0.1.0',
@@ -6,5 +6,5 @@ setup(name='pyadapt',
       author='Jayson Stemmler',
       author_email='jstemm@uw.edu',
       url='https://github.com/jstemmler/pyadapt',
-      packages=['pyadapt','pyadapt.extras', 'pyadapt.datastreams'],
+      packages=['pyadapt'],
      )
