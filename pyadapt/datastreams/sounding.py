@@ -19,13 +19,13 @@ class SOUNDING(ARMCLASS):
     :returns: ARMCLASS object
     """
 
-    def plot(self, altmax=None, ptop = 100.,
-                 skew=90.,
+    def plot(self, altmax=None,
                  save_plot=False,
                  out_dir = '',
                  out_name = '',
                  out_fmt = 'png',
-                 autoname = True):
+                 autoname = True,
+                 **kwargs):
         """Plot a sounding for quick visualization
 
         :param altmax: Maximum altitude to show (m)
@@ -71,6 +71,9 @@ class SOUNDING(ARMCLASS):
         import os
         #import matplotlib.pyplot as plt
 
+        ptop = kwargs.pop('ptop', 100.)
+        skew = kwargs.pop('skew', 90)
+
         # create a mask for plotting of the altitude data
         if altmax and not ptop:
             vertmask = self.data['alt'] <= altmax
@@ -79,12 +82,14 @@ class SOUNDING(ARMCLASS):
         elif ptop and altmax:
             vertmask = self.data['pres'] >= ptop
 
+        pbot = kwargs.pop('pbot', self.data['pres'][vertmask][0])
 
         # create the axes for the skew-t plot
-        fig, ax, bx = skewt.skewt_axes(ptop = self.data['pres'][vertmask][-1],
-                                       pbot = self.data['pres'][vertmask][0],
-                                       tmin = -10,
-                                       skew = skew)
+        fig, ax, bx = skewt.skewt_axes(ptop=self.data['pres'][vertmask][-1],
+                                       pbot=pbot,
+                                       tmin=kwargs.pop('tmin', -10),
+                                       tmax=kwargs.pop('tmax', 30),
+                                       skew=skew)
 
         # plot a profile of temperature and pressure
         fig, ax = skewt.plot_profile(fig, ax,

@@ -88,8 +88,8 @@ def skewt_axes(tmin = -40, tmax = 30,
     
     # mesh it!
     tempgrid, plevgrid = numpy.meshgrid(temp, plev)  # temp and log pressure lev
-    xx, skewgrid = numpy.meshgrid(temp, skf)         # skew factor grid
-    xx, presgrid = numpy.meshgrid(temp, pres)        # pressure grid
+    _, skewgrid = numpy.meshgrid(temp, skf)         # skew factor grid
+    _, presgrid = numpy.meshgrid(temp, pres)        # pressure grid
     
     # apply the skewfactor to the temperature grid
     tempskew = tempgrid + skewgrid
@@ -194,7 +194,7 @@ def plot_profile(fig, ax, t, p, c='r', label='', skew=100.):
     
     ax.plot(temp, pres, c+'-', label=label)
     ax.set_xlim(xlim)
-    ax.legend(fontsize='xx-small')
+    ax.legend(fontsize='x-small')
     
     return fig, ax
 
@@ -223,3 +223,7 @@ def plot_wind(fig, bx, mask, u, v, a, skip=50):
     bx.grid('on', which='both', axis='y')
     
     return fig, bx
+
+def plot_skewt(t, p, **kwargs):
+
+    fig, ax, bx = skewt_axes()
