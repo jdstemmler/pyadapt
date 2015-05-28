@@ -5,6 +5,8 @@
  * `aos`       - Aerosol Backscatter
     * 1um  total light scattering coefficient
     * 10um total light scattering coefficient
+    * plots: Aerosol scattering coefficient at 1um and 10um cutoff for all three
+      color channels (R, G, B)
  * `aosccn`    - CCN Number Concentration
     * number concentration
     * supersaturation
@@ -29,3 +31,4 @@ Tested with a handful of GRW and ENA files
    plot in there.
  * automatically detect which type of datastream you are trying
    to make a plot of
+ *
