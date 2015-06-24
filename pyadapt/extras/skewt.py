@@ -1,5 +1,10 @@
 import numpy
 from numpy import log10
+import matplotlib.pyplot as plt
+
+def h_to_p(h):
+    p = 101325 * (1 - 2.25577e-5 * h)**5.25588
+    return p
 
 def skewfactor(p, skew, ref=1000.):
     """Calculates the skew factor for a given pressure and skewness
@@ -70,7 +75,6 @@ def skewt_axes(tmin = -40, tmax = 30,
     all get handled by the :meth:`plot_profile` method.
     """
     
-    import matplotlib.pyplot as plt
     
     # some defaults
     #tmin = -30; tmax = 40; ptop = 100; pbot = 1050; skew=75; figsize=(10,10)
@@ -145,6 +149,9 @@ def skewt_axes(tmin = -40, tmax = 30,
     bx = bx1.twinx()
     bx.set_xticks([])
     bx.set_ylabel('Altitude (km)')
+    bx.set_yticks(-1*log10(h_to_p(numpy.arange(500, 20000, 500))/100.))
+    bx.set_yticklabels(['{:1.1f}'.format(i/1000.) for i in numpy.arange(500, 20000, 500)])
+    bx.set_ylim(bottom=-1*log10(pbot), top=-1*log10(ptop))
     #bx.minorticks_on()
     #bx.grid('on', which='both', axis='y')
     
@@ -214,14 +221,16 @@ def plot_wind(fig, bx, mask, u, v, a, skip=50):
     
     """
     bx.barbs(numpy.zeros(len(a[mask][::skip])),
-             a[mask][::skip]/1000.,
+             -1*log10(h_to_p(a[mask][::skip])/100.),
              u[mask][::skip],
              v[mask][::skip])
-    
-    bx.set_ylim((a[mask][0]/1000., a[mask][-1]/1000.))
-    bx.minorticks_on()
-    bx.grid('on', which='both', axis='y')
-    
+
+    bx.set_xlim(-1.5, 1.5)
+    #bx.minorticks_on()
+    #bx.grid('on', which='both', axis='y')
+
+    bx.grid('on')
+
     return fig, bx
 
 def plot_skewt(t, p, **kwargs):
