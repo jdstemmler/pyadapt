@@ -1,0 +1,11 @@
+cycler==0.10.0
+matplotlib==1.5.1
+netCDF4==1.2.4
+numexpr==2.5.2
+numpy==1.11.0
+pandas==0.18.1
+pyparsing==2.1.4
+python-dateutil==2.5.3
+pytz==2016.4
+six==1.10.0
+tables==3.2.2
