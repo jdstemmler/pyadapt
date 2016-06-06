@@ -1,6 +1,6 @@
 import os
 import re
-from .prettytable import PrettyTable, ALL
+from ._prettytable import PrettyTable, ALL
 from netCDF4 import Dataset
 
 
