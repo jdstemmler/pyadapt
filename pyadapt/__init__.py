@@ -1,1 +1,1 @@
-from .datastream import Datastream
+from .datastreams.autoclassify import Datastream
