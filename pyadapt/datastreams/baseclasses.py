@@ -35,17 +35,17 @@ def _validate_varlist(v):
 
 class _TimeSeries1D(object):
 
-    def __init__(self, filename, varlist=None, keep_nan_vars=True, **kwargs):
+    def __init__(self, filename, varlist=None, **kwargs):
 
         self.filename = _validate_filename(filename)
         self.varlist = _validate_varlist(varlist)
 
-        self.data = self.init_data()
-
-        self._keep_nan_vars = keep_nan_vars
+        self._keep_nan_vars = kwargs.pop('keep_nan_vars')
 
         for k, v in kwargs:
             setattr(self, k, v)
+
+        self.data = self.init_data()
 
     def __str__(self):
         return "{}\n  *{}".format(os.path.basename(self.filename), '\n  *'.join(self.varlist))
