@@ -32,23 +32,32 @@ def _validate_varlist(v):
     elif isinstance(v, dict):
         return v
 
+    elif v is None:
+        raise NotImplementedError("Varlist cannot be none right now")
 
-class _TimeSeries1D(object):
+
+class _TimeSeries(object):
 
     def __init__(self, filename, varlist=None, **kwargs):
 
         self.filename = _validate_filename(filename)
         self.varlist = _validate_varlist(varlist)
 
-        self._keep_nan_vars = kwargs.pop('keep_nan_vars')
+        self._keep_nan_vars = kwargs.pop('keep_nan_vars', default=False)
 
         for k, v in kwargs:
             setattr(self, k, v)
 
-        self.data = self.init_data()
-
     def __str__(self):
         return "{}\n  *{}".format(os.path.basename(self.filename), '\n  *'.join(self.varlist))
+
+
+class TimeSeries1D(_TimeSeries):
+
+    def __init__(self, filename, varlist=None, **kwargs):
+
+        super().__init__(filename, varlist, **kwargs)
+        self.data = self.init_data()
 
     def init_data(self):
 
@@ -76,15 +85,11 @@ class _TimeSeries1D(object):
         return pd.DataFrame(data, index=t)
 
 
-def _autoclass(filename):
-    pass
+class TimeSeries2D(_TimeSeries):
 
+    def __init__(self, filename, varlist=None, **kwargs):
+        super().__init__(filename, varlist, **kwargs)
+        self.data = self.init_data()
 
-def Datastream(filename, varlist=None, keep_nan_vars=False, **kwargs):
-
-    if varlist is None:
-        raise NotImplementedError("Sorry, Autodetection of variables is not implemented yet")
-
-    kwargs.update({'keep_nan_vars': keep_nan_vars})
-
-    return _TimeSeries1D(filename, varlist=varlist, **kwargs)
+    def init_data(self):
+        return 0
