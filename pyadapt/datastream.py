@@ -43,7 +43,7 @@ class _TimeSeries(object):
         self.filename = _validate_filename(filename)
         self.varlist = _validate_varlist(varlist)
 
-        self._keep_nan_vars = kwargs.pop('keep_nan_vars', default=False)
+        self._keep_nan_vars = kwargs.pop('keep_nan_vars', False)
 
         for k, v in kwargs:
             setattr(self, k, v)
