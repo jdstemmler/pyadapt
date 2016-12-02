@@ -1,4 +1,4 @@
-from .baseclasses import _TimeSeries1D
+from pyadapt.baseclasses import _TimeSeries1D
 
 
 def _autoclass(filename):

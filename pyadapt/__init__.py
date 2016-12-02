@@ -1,1 +1,1 @@
-from .datastreams.autoclassify import Datastream
+from pyadapt.autoclassify import Datastream
